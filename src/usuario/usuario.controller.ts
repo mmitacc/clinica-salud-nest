@@ -22,13 +22,26 @@ export class UsuarioController {
   }
 
   @Get()
+  findAll() {
+    return this.usuarioService.findAll();
+  }
+
+  @Get('/medico')
   findAllMedico(@Query('especialidad') especialidadNombre?: string) {
     return this.usuarioService.findAllMedico(especialidadNombre);
   }
 
-  @Get()
-  findAll() {
-    return this.usuarioService.findAll();
+  @Get('/medico/agenda')
+  findAgendaByDate(
+    @Param('id') id: string,
+    @Query('fechaInicio') fechaInicio: string,
+    @Query('fechaFin') fechaFin: string,
+  ) {
+    return this.usuarioService.findAgendaByDate(
+      +id,
+      new Date(fechaInicio),
+      new Date(fechaFin),
+    );
   }
 
   @Get(':id')

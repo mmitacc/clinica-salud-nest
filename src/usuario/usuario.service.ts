@@ -76,4 +76,47 @@ export class UsuarioService {
       where: { id },
     });
   }
+
+  async findAgendaByDate(id: number, fechaInicio?: Date, fechaFin?: Date) {
+    const options = {
+      where: {
+        id,
+        deleted: false,
+      },
+      select: {
+        nombres: true,
+        apellidos: true,
+        especialidad: { select: { tipo: true } },
+        consultas: {
+          select: {
+            citadate: true,
+            paciente: {
+              select: {
+                id: true,
+                nombres: true,
+                apellidos: true,
+              },
+            },
+          },
+          where: {},
+        },
+      },
+    };
+    if (fechaInicio && fechaFin && options.select?.consultas) {
+      (options.select.consultas as any).where = {
+        citadate: {
+          gte: fechaInicio,
+          lte: fechaFin,
+        },
+      };
+    }
+    return await this.prisma.usuario.findFirst(options);
+  }
+
+  async findAllByIdEspecialidad(idEspecialidad: number) {
+    return await this.prisma.usuario.findMany({
+      where: { id_especialidad: idEspecialidad, deleted: false },
+      select: { id: true, nombres: true, apellidos: true },
+    });
+  }
 }
