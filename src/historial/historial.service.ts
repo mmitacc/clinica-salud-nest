@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateHistorialDto } from './dto/create-historial.dto.js';
 import { UpdateHistorialDto } from './dto/update-historial.dto.js';
-import { PrismaClient } from '../prisma/generated-client/client.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class HistorialService {
-  constructor(private readonly prisma: PrismaClient) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(createHistorialDto: CreateHistorialDto) {
     return await this.prisma.historial.create({

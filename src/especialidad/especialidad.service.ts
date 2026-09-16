@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateEspecialidadDto } from './dto/create-especialidad.dto.js';
 import { UpdateEspecialidadDto } from './dto/update-especialidad.dto.js';
-import { PrismaClient } from '../prisma/generated-client/client.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class EspecialidadService {
-  constructor(private readonly prisma: PrismaClient) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(createEspecialidadDto: CreateEspecialidadDto) {
     return await this.prisma.especialidad.create({

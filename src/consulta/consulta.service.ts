@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateConsultaDto } from './dto/create-consulta.dto.js';
 import { UpdateConsultaDto } from './dto/update-consulta.dto.js';
-import { PrismaClient } from '../prisma/generated-client/client.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 import { EstadoCita } from '../prisma/generated-client/client.js';
 
 @Injectable()
 export class ConsultaService {
-  constructor(private readonly prisma: PrismaClient) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(createConsultaDto: CreateConsultaDto) {
     return await this.prisma.consulta.create({
