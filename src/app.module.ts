@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
+import { PrismaExceptionFilter } from './prisma/prisma-exception.filter.js';
 // import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { PrismaModule } from './prisma/prisma.module.js';
 import { PacienteModule } from './paciente/paciente.module.js';
 import { UsuarioModule } from './usuario/usuario.module.js';
+import { EspecialidadModule } from './especialidad/especialidad.module.js';
+import { HistorialModule } from './historial/historial.module.js';
+import { ConsultaModule } from './consulta/consulta.module.js';
 
 // export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -21,8 +26,17 @@ import { UsuarioModule } from './usuario/usuario.module.js';
     PrismaModule,
     PacienteModule,
     UsuarioModule,
+    EspecialidadModule,
+    HistorialModule,
+    ConsultaModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: PrismaExceptionFilter, // NestJS se encarga de instanciarlo globalmente
+    },
+  ],
 })
 export class AppModule {}
