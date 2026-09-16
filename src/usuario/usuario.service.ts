@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto.js';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
@@ -6,6 +6,7 @@ import { PrismaService } from '../prisma/prisma.service.js';
 @Injectable()
 export class UsuarioService {
   constructor(private readonly prisma: PrismaService) {}
+
   async create(createUsuarioDto: CreateUsuarioDto) {
     const { id_especialidad, hashedPassword, ...otros_datos } =
       createUsuarioDto;
@@ -26,7 +27,7 @@ export class UsuarioService {
       where: {
         deleted: false,
         role: 'MEDICO',
-        // Si viene el nombre, aplica el filtro; si no, no filtra nada por este campo
+        // Si viene 'especialidadNombre', aplica el filtro; si no, no filtra nada por este campo
         ...(especialidadNombre && {
           especialidad: {
             tipo: { contains: especialidadNombre, mode: 'insensitive' },
@@ -41,6 +42,7 @@ export class UsuarioService {
 
   async findAll() {
     return await this.prisma.usuario.findMany({
+      where: { deleted: false },
       omit: { deleted: true, password: true, id_especialidad: true },
       include: { especialidad: { select: { tipo: true } } },
       orderBy: { id: 'asc' },
@@ -48,30 +50,48 @@ export class UsuarioService {
   }
 
   async findOne(id: number) {
-    return await this.prisma.usuario.findFirst({
+    const usuario = await this.prisma.usuario.findFirst({
       where: { id, deleted: false },
       omit: { deleted: true, id_especialidad: true, password: true },
       include: { especialidad: { omit: { deleted: true } } },
     });
+    if (!usuario)
+      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
+    return usuario;
   }
 
   async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
+    const usuario = await this.prisma.usuario.findFirst({
+      where: { id, deleted: false },
+    });
+    if (!usuario)
+      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
     return await this.prisma.usuario.update({
-      where: { id },
+      where: { id, deleted: false },
       data: updateUsuarioDto,
       omit: { deleted: true, password: true },
     });
   }
 
   async removeSoft(id: number) {
+    const usuario = await this.prisma.usuario.findFirst({
+      where: { id, deleted: false },
+    });
+    if (!usuario)
+      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
     return await this.prisma.usuario.update({
-      where: { id },
+      where: { id, deleted: false },
       data: { deleted: true },
       omit: { deleted: true, password: true },
     });
   }
 
   async remove(id: number) {
+    const usuario = await this.prisma.usuario.findFirst({
+      where: { id, deleted: false },
+    });
+    if (!usuario)
+      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
     return await this.prisma.usuario.delete({
       where: { id },
     });
