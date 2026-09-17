@@ -40,11 +40,6 @@ export class PacienteController {
 
   @Delete(':id')
   removeSoft(@Param('id') id: string) {
-    return this.pacienteService.remove(+id);
-  }
-
-  @Delete('/admin/:id')
-  remove(@Param('id') id: string) {
-    return this.pacienteService.remove(+id);
+    return this.pacienteService.removeSoft(+id);
   }
 }

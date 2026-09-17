@@ -57,13 +57,4 @@ export class HistorialService {
       omit: { deleted: true },
     });
   }
-
-  async remove(id: number) {
-    const historial = await this.prisma.historial.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!historial)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return await this.prisma.historial.delete({ where: { id } });
-  }
 }

@@ -42,9 +42,4 @@ export class HistorialController {
   removeSoft(@Param('id') id: string) {
     return this.historialService.removeSoft(+id);
   }
-
-  @Delete('/admin/:id')
-  remove(@Param('id') id: string) {
-    return this.historialService.remove(+id);
-  }
 }

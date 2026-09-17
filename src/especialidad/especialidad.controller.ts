@@ -42,9 +42,4 @@ export class EspecialidadController {
   removeSoft(@Param('id') id: string) {
     return this.especialidadService.removeSoft(+id);
   }
-
-  @Delete('/admin/:id')
-  remove(@Param('id') id: string) {
-    return this.especialidadService.remove(+id);
-  }
 }

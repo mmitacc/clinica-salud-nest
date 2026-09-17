@@ -26,24 +26,6 @@ export class UsuarioController {
     return this.usuarioService.findAll();
   }
 
-  @Get('/medico')
-  findAllMedico(@Query('especialidad') especialidadNombre?: string) {
-    return this.usuarioService.findAllMedico(especialidadNombre);
-  }
-
-  @Get('/medico/agenda')
-  findAgendaByDate(
-    @Param('id') id: string,
-    @Query('fechaInicio') fechaInicio: string,
-    @Query('fechaFin') fechaFin: string,
-  ) {
-    return this.usuarioService.findAgendaByDate(
-      +id,
-      new Date(fechaInicio),
-      new Date(fechaFin),
-    );
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usuarioService.findOne(+id);
@@ -57,10 +39,5 @@ export class UsuarioController {
   @Delete(':id')
   removeSoft(@Param('id') id: string) {
     return this.usuarioService.removeSoft(+id);
-  }
-
-  @Delete('/admin/:id')
-  remove(@Param('id') id: string) {
-    return this.usuarioService.remove(+id);
   }
 }
