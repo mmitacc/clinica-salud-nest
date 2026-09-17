@@ -59,13 +59,4 @@ export class EspecialidadService {
       omit: { deleted: true },
     });
   }
-
-  async remove(id: number) {
-    const especialidad = await this.prisma.especialidad.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!especialidad)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return this.prisma.especialidad.delete({ where: { id } });
-  }
 }

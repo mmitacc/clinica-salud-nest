@@ -60,15 +60,4 @@ export class PacienteService {
       omit: { deleted: true },
     });
   }
-
-  async remove(id: number) {
-    const paciente = await this.prisma.paciente.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!paciente)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return await this.prisma.paciente.delete({
-      where: { id },
-    });
-  }
 }
