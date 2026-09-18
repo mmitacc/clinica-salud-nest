@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module.js';
 import { ValidationPipe } from '@nestjs/common';
-import { PrismaExceptionFilter } from './prisma/prisma-exception.filter.ts.js';
+import { PrismaExceptionFilter } from './prisma/prisma-exception.filter.js';
 // import { AppModule, ObserveInstrument } from './app.module.js';
 
 async function bootstrap() {
