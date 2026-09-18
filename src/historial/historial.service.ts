@@ -8,53 +8,34 @@ export class HistorialService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createHistorialDto: CreateHistorialDto) {
-    return await this.prisma.historial.create({
+    return await this.prisma.check.historial.create({
       data: createHistorialDto,
-      omit: { deleted: true },
     });
   }
 
   async findAll() {
-    return await this.prisma.historial.findMany({
-      where: { deleted: false },
-      omit: { deleted: true },
+    return await this.prisma.check.historial.findMany({
       orderBy: { id: 'asc' },
     });
   }
 
   async findOne(id: number) {
-    const historial = await this.prisma.historial.findFirst({
-      where: { id, deleted: false },
-      omit: { deleted: true },
+    return await this.prisma.check.historial.findFirst({
+      where: { id },
     });
-    if (!historial)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return historial;
   }
 
   async update(id: number, updateHistorialDto: UpdateHistorialDto) {
-    const historial = await this.prisma.historial.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!historial)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return await this.prisma.historial.update({
-      where: { id, deleted: false },
+    return await this.prisma.check.historial.update({
+      where: { id },
       data: updateHistorialDto,
-      omit: { deleted: true },
     });
   }
 
   async removeSoft(id: number) {
-    const historial = await this.prisma.historial.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!historial)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return await this.prisma.historial.update({
-      where: { id, deleted: false },
-      data: { deleted: true },
-      omit: { deleted: true },
+    return await this.prisma.check.historial.update({
+      where: { id },
+      data: { deleted: true, deletedate: new Date() },
     });
   }
 }

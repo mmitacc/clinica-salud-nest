@@ -47,6 +47,7 @@ export type HistorialMinAggregateOutputType = {
   receta: string | null
   registerdate: Date | null
   deleted: boolean | null
+  deletedate: Date | null
 }
 
 export type HistorialMaxAggregateOutputType = {
@@ -60,6 +61,7 @@ export type HistorialMaxAggregateOutputType = {
   receta: string | null
   registerdate: Date | null
   deleted: boolean | null
+  deletedate: Date | null
 }
 
 export type HistorialCountAggregateOutputType = {
@@ -73,6 +75,7 @@ export type HistorialCountAggregateOutputType = {
   receta: number
   registerdate: number
   deleted: number
+  deletedate: number
   _all: number
 }
 
@@ -98,6 +101,7 @@ export type HistorialMinAggregateInputType = {
   receta?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
 }
 
 export type HistorialMaxAggregateInputType = {
@@ -111,6 +115,7 @@ export type HistorialMaxAggregateInputType = {
   receta?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
 }
 
 export type HistorialCountAggregateInputType = {
@@ -124,6 +129,7 @@ export type HistorialCountAggregateInputType = {
   receta?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -224,6 +230,7 @@ export type HistorialGroupByOutputType = {
   receta: string | null
   registerdate: Date
   deleted: boolean
+  deletedate: Date | null
   _count: HistorialCountAggregateOutputType | null
   _avg: HistorialAvgAggregateOutputType | null
   _sum: HistorialSumAggregateOutputType | null
@@ -260,6 +267,7 @@ export type HistorialWhereInput = {
   receta?: Prisma.StringNullableFilter<"Historial"> | string | null
   registerdate?: Prisma.DateTimeFilter<"Historial"> | Date | string
   deleted?: Prisma.BoolFilter<"Historial"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Historial"> | Date | string | null
   paciente?: Prisma.XOR<Prisma.PacienteScalarRelationFilter, Prisma.PacienteWhereInput>
 }
 
@@ -274,6 +282,7 @@ export type HistorialOrderByWithRelationInput = {
   receta?: Prisma.SortOrderInput | Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   paciente?: Prisma.PacienteOrderByWithRelationInput
 }
 
@@ -291,6 +300,7 @@ export type HistorialWhereUniqueInput = Prisma.AtLeast<{
   receta?: Prisma.StringNullableFilter<"Historial"> | string | null
   registerdate?: Prisma.DateTimeFilter<"Historial"> | Date | string
   deleted?: Prisma.BoolFilter<"Historial"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Historial"> | Date | string | null
   paciente?: Prisma.XOR<Prisma.PacienteScalarRelationFilter, Prisma.PacienteWhereInput>
 }, "id">
 
@@ -305,6 +315,7 @@ export type HistorialOrderByWithAggregationInput = {
   receta?: Prisma.SortOrderInput | Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.HistorialCountOrderByAggregateInput
   _avg?: Prisma.HistorialAvgOrderByAggregateInput
   _max?: Prisma.HistorialMaxOrderByAggregateInput
@@ -326,6 +337,7 @@ export type HistorialScalarWhereWithAggregatesInput = {
   receta?: Prisma.StringNullableWithAggregatesFilter<"Historial"> | string | null
   registerdate?: Prisma.DateTimeWithAggregatesFilter<"Historial"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Historial"> | boolean
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Historial"> | Date | string | null
 }
 
 export type HistorialCreateInput = {
@@ -337,6 +349,7 @@ export type HistorialCreateInput = {
   receta?: string | null
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   paciente: Prisma.PacienteCreateNestedOneWithoutHistorialesInput
 }
 
@@ -351,6 +364,7 @@ export type HistorialUncheckedCreateInput = {
   receta?: string | null
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type HistorialUpdateInput = {
@@ -362,6 +376,7 @@ export type HistorialUpdateInput = {
   receta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paciente?: Prisma.PacienteUpdateOneRequiredWithoutHistorialesNestedInput
 }
 
@@ -376,6 +391,7 @@ export type HistorialUncheckedUpdateInput = {
   receta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HistorialCreateManyInput = {
@@ -389,6 +405,7 @@ export type HistorialCreateManyInput = {
   receta?: string | null
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type HistorialUpdateManyMutationInput = {
@@ -400,6 +417,7 @@ export type HistorialUpdateManyMutationInput = {
   receta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HistorialUncheckedUpdateManyInput = {
@@ -413,6 +431,7 @@ export type HistorialUncheckedUpdateManyInput = {
   receta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HistorialListRelationFilter = {
@@ -436,6 +455,7 @@ export type HistorialCountOrderByAggregateInput = {
   receta?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type HistorialAvgOrderByAggregateInput = {
@@ -454,6 +474,7 @@ export type HistorialMaxOrderByAggregateInput = {
   receta?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type HistorialMinOrderByAggregateInput = {
@@ -467,6 +488,7 @@ export type HistorialMinOrderByAggregateInput = {
   receta?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type HistorialSumOrderByAggregateInput = {
@@ -529,6 +551,7 @@ export type HistorialCreateWithoutPacienteInput = {
   receta?: string | null
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type HistorialUncheckedCreateWithoutPacienteInput = {
@@ -541,6 +564,7 @@ export type HistorialUncheckedCreateWithoutPacienteInput = {
   receta?: string | null
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type HistorialCreateOrConnectWithoutPacienteInput = {
@@ -583,6 +607,7 @@ export type HistorialScalarWhereInput = {
   receta?: Prisma.StringNullableFilter<"Historial"> | string | null
   registerdate?: Prisma.DateTimeFilter<"Historial"> | Date | string
   deleted?: Prisma.BoolFilter<"Historial"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Historial"> | Date | string | null
 }
 
 export type HistorialCreateManyPacienteInput = {
@@ -595,6 +620,7 @@ export type HistorialCreateManyPacienteInput = {
   receta?: string | null
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type HistorialUpdateWithoutPacienteInput = {
@@ -606,6 +632,7 @@ export type HistorialUpdateWithoutPacienteInput = {
   receta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HistorialUncheckedUpdateWithoutPacienteInput = {
@@ -618,6 +645,7 @@ export type HistorialUncheckedUpdateWithoutPacienteInput = {
   receta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HistorialUncheckedUpdateManyWithoutPacienteInput = {
@@ -630,6 +658,7 @@ export type HistorialUncheckedUpdateManyWithoutPacienteInput = {
   receta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -645,6 +674,7 @@ export type HistorialSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   receta?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["historial"]>
 
@@ -659,6 +689,7 @@ export type HistorialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   receta?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["historial"]>
 
@@ -673,6 +704,7 @@ export type HistorialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   receta?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["historial"]>
 
@@ -687,9 +719,10 @@ export type HistorialSelectScalar = {
   receta?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
 }
 
-export type HistorialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_paciente" | "motivo" | "antecedentes" | "triaje" | "diagnostico" | "tratamiento" | "receta" | "registerdate" | "deleted", ExtArgs["result"]["historial"]>
+export type HistorialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_paciente" | "motivo" | "antecedentes" | "triaje" | "diagnostico" | "tratamiento" | "receta" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["historial"]>
 export type HistorialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
 }
@@ -716,6 +749,7 @@ export type $HistorialPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     receta: string | null
     registerdate: Date
     deleted: boolean
+    deletedate: Date | null
   }, ExtArgs["result"]["historial"]>
   composites: {}
 }
@@ -1150,6 +1184,7 @@ export interface HistorialFieldRefs {
   readonly receta: Prisma.FieldRef<"Historial", 'String'>
   readonly registerdate: Prisma.FieldRef<"Historial", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Historial", 'Boolean'>
+  readonly deletedate: Prisma.FieldRef<"Historial", 'DateTime'>
 }
     
 

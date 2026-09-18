@@ -841,7 +841,8 @@ export const PacienteScalarFieldEnum = {
   tiposangre: 'tiposangre',
   alergias: 'alergias',
   registerdate: 'registerdate',
-  deleted: 'deleted'
+  deleted: 'deleted',
+  deletedate: 'deletedate'
 } as const
 
 export type PacienteScalarFieldEnum = (typeof PacienteScalarFieldEnum)[keyof typeof PacienteScalarFieldEnum]
@@ -857,7 +858,8 @@ export const HistorialScalarFieldEnum = {
   tratamiento: 'tratamiento',
   receta: 'receta',
   registerdate: 'registerdate',
-  deleted: 'deleted'
+  deleted: 'deleted',
+  deletedate: 'deletedate'
 } as const
 
 export type HistorialScalarFieldEnum = (typeof HistorialScalarFieldEnum)[keyof typeof HistorialScalarFieldEnum]
@@ -871,7 +873,8 @@ export const ConsultaScalarFieldEnum = {
   citadate: 'citadate',
   costo: 'costo',
   registerdate: 'registerdate',
-  deleted: 'deleted'
+  deleted: 'deleted',
+  deletedate: 'deletedate'
 } as const
 
 export type ConsultaScalarFieldEnum = (typeof ConsultaScalarFieldEnum)[keyof typeof ConsultaScalarFieldEnum]
@@ -890,7 +893,8 @@ export const UsuarioScalarFieldEnum = {
   role: 'role',
   username: 'username',
   registerdate: 'registerdate',
-  deleted: 'deleted'
+  deleted: 'deleted',
+  deletedate: 'deletedate'
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
@@ -900,7 +904,8 @@ export const EspecialidadScalarFieldEnum = {
   id: 'id',
   tipo: 'tipo',
   registerdate: 'registerdate',
-  deleted: 'deleted'
+  deleted: 'deleted',
+  deletedate: 'deletedate'
 } as const
 
 export type EspecialidadScalarFieldEnum = (typeof EspecialidadScalarFieldEnum)[keyof typeof EspecialidadScalarFieldEnum]

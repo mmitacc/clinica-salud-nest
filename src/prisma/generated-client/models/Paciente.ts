@@ -46,6 +46,7 @@ export type PacienteMinAggregateOutputType = {
   alergias: string | null
   registerdate: Date | null
   deleted: boolean | null
+  deletedate: Date | null
 }
 
 export type PacienteMaxAggregateOutputType = {
@@ -60,6 +61,7 @@ export type PacienteMaxAggregateOutputType = {
   alergias: string | null
   registerdate: Date | null
   deleted: boolean | null
+  deletedate: Date | null
 }
 
 export type PacienteCountAggregateOutputType = {
@@ -74,6 +76,7 @@ export type PacienteCountAggregateOutputType = {
   alergias: number
   registerdate: number
   deleted: number
+  deletedate: number
   _all: number
 }
 
@@ -98,6 +101,7 @@ export type PacienteMinAggregateInputType = {
   alergias?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
 }
 
 export type PacienteMaxAggregateInputType = {
@@ -112,6 +116,7 @@ export type PacienteMaxAggregateInputType = {
   alergias?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
 }
 
 export type PacienteCountAggregateInputType = {
@@ -126,6 +131,7 @@ export type PacienteCountAggregateInputType = {
   alergias?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -227,6 +233,7 @@ export type PacienteGroupByOutputType = {
   alergias: string
   registerdate: Date
   deleted: boolean
+  deletedate: Date | null
   _count: PacienteCountAggregateOutputType | null
   _avg: PacienteAvgAggregateOutputType | null
   _sum: PacienteSumAggregateOutputType | null
@@ -264,6 +271,7 @@ export type PacienteWhereInput = {
   alergias?: Prisma.StringFilter<"Paciente"> | string
   registerdate?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   deleted?: Prisma.BoolFilter<"Paciente"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
   historiales?: Prisma.HistorialListRelationFilter
   consultas?: Prisma.ConsultaListRelationFilter
 }
@@ -280,6 +288,7 @@ export type PacienteOrderByWithRelationInput = {
   alergias?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   historiales?: Prisma.HistorialOrderByRelationAggregateInput
   consultas?: Prisma.ConsultaOrderByRelationAggregateInput
 }
@@ -299,6 +308,7 @@ export type PacienteWhereUniqueInput = Prisma.AtLeast<{
   alergias?: Prisma.StringFilter<"Paciente"> | string
   registerdate?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   deleted?: Prisma.BoolFilter<"Paciente"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
   historiales?: Prisma.HistorialListRelationFilter
   consultas?: Prisma.ConsultaListRelationFilter
 }, "id" | "email">
@@ -315,6 +325,7 @@ export type PacienteOrderByWithAggregationInput = {
   alergias?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PacienteCountOrderByAggregateInput
   _avg?: Prisma.PacienteAvgOrderByAggregateInput
   _max?: Prisma.PacienteMaxOrderByAggregateInput
@@ -337,6 +348,7 @@ export type PacienteScalarWhereWithAggregatesInput = {
   alergias?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   registerdate?: Prisma.DateTimeWithAggregatesFilter<"Paciente"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Paciente"> | boolean
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Paciente"> | Date | string | null
 }
 
 export type PacienteCreateInput = {
@@ -350,6 +362,7 @@ export type PacienteCreateInput = {
   alergias?: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   historiales?: Prisma.HistorialCreateNestedManyWithoutPacienteInput
   consultas?: Prisma.ConsultaCreateNestedManyWithoutPacienteInput
 }
@@ -366,6 +379,7 @@ export type PacienteUncheckedCreateInput = {
   alergias?: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   historiales?: Prisma.HistorialUncheckedCreateNestedManyWithoutPacienteInput
   consultas?: Prisma.ConsultaUncheckedCreateNestedManyWithoutPacienteInput
 }
@@ -381,6 +395,7 @@ export type PacienteUpdateInput = {
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   historiales?: Prisma.HistorialUpdateManyWithoutPacienteNestedInput
   consultas?: Prisma.ConsultaUpdateManyWithoutPacienteNestedInput
 }
@@ -397,6 +412,7 @@ export type PacienteUncheckedUpdateInput = {
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   historiales?: Prisma.HistorialUncheckedUpdateManyWithoutPacienteNestedInput
   consultas?: Prisma.ConsultaUncheckedUpdateManyWithoutPacienteNestedInput
 }
@@ -413,6 +429,7 @@ export type PacienteCreateManyInput = {
   alergias?: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type PacienteUpdateManyMutationInput = {
@@ -426,6 +443,7 @@ export type PacienteUpdateManyMutationInput = {
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type PacienteUncheckedUpdateManyInput = {
@@ -440,6 +458,7 @@ export type PacienteUncheckedUpdateManyInput = {
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type PacienteCountOrderByAggregateInput = {
@@ -454,6 +473,7 @@ export type PacienteCountOrderByAggregateInput = {
   alergias?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type PacienteAvgOrderByAggregateInput = {
@@ -472,6 +492,7 @@ export type PacienteMaxOrderByAggregateInput = {
   alergias?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type PacienteMinOrderByAggregateInput = {
@@ -486,6 +507,7 @@ export type PacienteMinOrderByAggregateInput = {
   alergias?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type PacienteSumOrderByAggregateInput = {
@@ -507,6 +529,10 @@ export type BoolFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -556,6 +582,7 @@ export type PacienteCreateWithoutHistorialesInput = {
   alergias?: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   consultas?: Prisma.ConsultaCreateNestedManyWithoutPacienteInput
 }
 
@@ -571,6 +598,7 @@ export type PacienteUncheckedCreateWithoutHistorialesInput = {
   alergias?: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   consultas?: Prisma.ConsultaUncheckedCreateNestedManyWithoutPacienteInput
 }
 
@@ -601,6 +629,7 @@ export type PacienteUpdateWithoutHistorialesInput = {
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consultas?: Prisma.ConsultaUpdateManyWithoutPacienteNestedInput
 }
 
@@ -616,6 +645,7 @@ export type PacienteUncheckedUpdateWithoutHistorialesInput = {
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   consultas?: Prisma.ConsultaUncheckedUpdateManyWithoutPacienteNestedInput
 }
 
@@ -630,6 +660,7 @@ export type PacienteCreateWithoutConsultasInput = {
   alergias?: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   historiales?: Prisma.HistorialCreateNestedManyWithoutPacienteInput
 }
 
@@ -645,6 +676,7 @@ export type PacienteUncheckedCreateWithoutConsultasInput = {
   alergias?: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   historiales?: Prisma.HistorialUncheckedCreateNestedManyWithoutPacienteInput
 }
 
@@ -675,6 +707,7 @@ export type PacienteUpdateWithoutConsultasInput = {
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   historiales?: Prisma.HistorialUpdateManyWithoutPacienteNestedInput
 }
 
@@ -690,6 +723,7 @@ export type PacienteUncheckedUpdateWithoutConsultasInput = {
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   historiales?: Prisma.HistorialUncheckedUpdateManyWithoutPacienteNestedInput
 }
 
@@ -745,6 +779,7 @@ export type PacienteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   alergias?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
   historiales?: boolean | Prisma.Paciente$historialesArgs<ExtArgs>
   consultas?: boolean | Prisma.Paciente$consultasArgs<ExtArgs>
   _count?: boolean | Prisma.PacienteCountOutputTypeDefaultArgs<ExtArgs>
@@ -762,6 +797,7 @@ export type PacienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   alergias?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["paciente"]>
 
 export type PacienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -776,6 +812,7 @@ export type PacienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   alergias?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["paciente"]>
 
 export type PacienteSelectScalar = {
@@ -790,9 +827,10 @@ export type PacienteSelectScalar = {
   alergias?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
 }
 
-export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombres" | "apellidos" | "telefono" | "email" | "masculino" | "fechanacimiento" | "tiposangre" | "alergias" | "registerdate" | "deleted", ExtArgs["result"]["paciente"]>
+export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombres" | "apellidos" | "telefono" | "email" | "masculino" | "fechanacimiento" | "tiposangre" | "alergias" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["paciente"]>
 export type PacienteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   historiales?: boolean | Prisma.Paciente$historialesArgs<ExtArgs>
   consultas?: boolean | Prisma.Paciente$consultasArgs<ExtArgs>
@@ -819,6 +857,7 @@ export type $PacientePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     alergias: string
     registerdate: Date
     deleted: boolean
+    deletedate: Date | null
   }, ExtArgs["result"]["paciente"]>
   composites: {}
 }
@@ -1255,6 +1294,7 @@ export interface PacienteFieldRefs {
   readonly alergias: Prisma.FieldRef<"Paciente", 'String'>
   readonly registerdate: Prisma.FieldRef<"Paciente", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Paciente", 'Boolean'>
+  readonly deletedate: Prisma.FieldRef<"Paciente", 'DateTime'>
 }
     
 

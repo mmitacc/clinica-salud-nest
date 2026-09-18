@@ -32,71 +32,51 @@ export class ConsultaService {
       horario, // "14:30"
     };
   }
-  // **************************************************************
 
   async create(createConsultaDto: CreateConsultaDto) {
     const { fecha, horario, id_usuario, ...restoDatosConsulta } =
       createConsultaDto;
     // Formateamos de fecha y horario al campo "citadate"
     const citadate = new Date(`${fecha}T${horario}:00`);
-    // *************************************************
-    const medico = await this.prisma.usuario.findFirst({
+    const medico = await this.prisma.check.usuario.findFirst({
       where: { id: id_usuario },
     });
     if (medico?.role !== 'MEDICO')
       throw new BadRequestException(
         `El id_usuario=${id_usuario}, no corresponde a un Médico.`,
       );
-    const consultaCreate = await this.prisma.consulta.create({
+    const consultaCreate = await this.prisma.check.consulta.create({
       data: { ...restoDatosConsulta, id_usuario, citadate },
-      omit: { deleted: true },
     });
     return this.formatearConsulta(consultaCreate);
   }
 
   async findAll() {
-    const consultas = await this.prisma.consulta.findMany({
-      where: { deleted: false },
-      omit: { deleted: true },
+    const consultas = await this.prisma.check.consulta.findMany({
       orderBy: { id: 'asc' },
     });
     return consultas.map((consulta) => this.formatearConsulta(consulta));
   }
 
   async findOne(id: number) {
-    const consulta = await this.prisma.consulta.findFirst({
-      where: { id, deleted: false },
-      omit: { deleted: true },
+    const consulta = await this.prisma.check.consulta.findFirst({
+      where: { id },
     });
-    if (!consulta)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
     return this.formatearConsulta(consulta);
   }
 
   async update(id: number, updateConsultaDto: UpdateConsultaDto) {
-    const consulta = await this.prisma.consulta.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!consulta)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    const consultaUpdate = await this.prisma.consulta.update({
-      where: { id, deleted: false },
+    const consultaUpdate = await this.prisma.check.consulta.update({
+      where: { id },
       data: updateConsultaDto,
-      omit: { deleted: true },
     });
     return this.formatearConsulta(consultaUpdate);
   }
 
   async removeSoft(id: number) {
-    const consulta = await this.prisma.consulta.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!consulta)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    const consultaDelete = await this.prisma.consulta.update({
-      where: { id, deleted: false },
-      data: { deleted: true },
-      omit: { deleted: true },
+    const consultaDelete = await this.prisma.check.consulta.update({
+      where: { id },
+      data: { deleted: true, deletedate: new Date() },
     });
     return this.formatearConsulta(consultaDelete);
   }

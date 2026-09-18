@@ -26,17 +26,18 @@ enum Role {
 
 // ------------------- paciente ------------------ //
 model Paciente {
-  id              Int      @id @default(autoincrement())
-  nombres         String   @db.VarChar(100)
-  apellidos       String   @db.VarChar(100)
-  telefono        String   @db.VarChar(20)
-  email           String   @unique @db.VarChar(150)
-  masculino       Boolean  @default(true)
-  fechanacimiento DateTime @db.Date
-  tiposangre      String   @default("RHO+") @db.VarChar(5)
-  alergias        String   @default("Ninguna") @db.Text
-  registerdate    DateTime @default(now())
-  deleted         Boolean  @default(false)
+  id              Int       @id @default(autoincrement())
+  nombres         String    @db.VarChar(100)
+  apellidos       String    @db.VarChar(100)
+  telefono        String    @db.VarChar(20)
+  email           String    @unique @db.VarChar(150)
+  masculino       Boolean   @default(true)
+  fechanacimiento DateTime  @db.Date
+  tiposangre      String    @default("RHO+") @db.VarChar(5)
+  alergias        String    @default("Ninguna") @db.Text
+  registerdate    DateTime  @default(now())
+  deleted         Boolean   @default(false)
+  deletedate      DateTime? @db.Date
 
   // Relaciones inversas
   historiales Historial[]
@@ -47,16 +48,17 @@ model Paciente {
 
 // ------------------- historial ------------------ //
 model Historial {
-  id           Int      @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   id_paciente  Int
-  motivo       String   @db.Text
-  antecedentes String?  @db.Text
-  triaje       String   @db.Text
-  diagnostico  String?  @db.Text
-  tratamiento  String?  @db.Text
-  receta       String?  @db.Text
-  registerdate DateTime @default(now())
-  deleted      Boolean  @default(false)
+  motivo       String    @db.Text
+  antecedentes String?   @db.Text
+  triaje       String    @db.Text
+  diagnostico  String?   @db.Text
+  tratamiento  String?   @db.Text
+  receta       String?   @db.Text
+  registerdate DateTime  @default(now())
+  deleted      Boolean   @default(false)
+  deletedate   DateTime? @db.Date
 
   // Relación: Un historial pertenece a un paciente
   paciente Paciente @relation(fields: [id_paciente], references: [id], onDelete: Restrict)
@@ -74,6 +76,7 @@ model Consulta {
   costo        Decimal    @default(50.0) @db.Decimal(10, 2)
   registerdate DateTime   @default(now())
   deleted      Boolean    @default(false)
+  deletedate   DateTime?  @db.Date
 
   // Relaciones
   paciente Paciente @relation(fields: [id_paciente], references: [id], onDelete: Restrict)
@@ -84,19 +87,20 @@ model Consulta {
 
 // ------------------- usuario ------------------ //
 model Usuario {
-  id              Int      @id @default(autoincrement())
+  id              Int       @id @default(autoincrement())
   id_especialidad Int?
-  nombres         String   @db.VarChar(100)
-  apellidos       String   @db.VarChar(100)
-  telefono        String   @db.VarChar(20)
-  masculino       Boolean  @default(true)
-  fechanacimiento DateTime @db.Date
-  email           String   @unique @db.VarChar(150)
-  password        String   @db.VarChar(100)
+  nombres         String    @db.VarChar(100)
+  apellidos       String    @db.VarChar(100)
+  telefono        String    @db.VarChar(20)
+  masculino       Boolean   @default(true)
+  fechanacimiento DateTime  @db.Date
+  email           String    @unique @db.VarChar(150)
+  password        String    @db.VarChar(100)
   role            Role
-  username        String   @unique @db.VarChar(50)
-  registerdate    DateTime @default(now())
-  deleted         Boolean  @default(false)
+  username        String    @unique @db.VarChar(50)
+  registerdate    DateTime  @default(now())
+  deleted         Boolean   @default(false)
+  deletedate      DateTime? @db.Date
 
   // Relaciones
   especialidad Especialidad? @relation(fields: [id_especialidad], references: [id], onDelete: Restrict)
@@ -107,10 +111,11 @@ model Usuario {
 
 // ------------------- especialidad ------------------ //
 model Especialidad {
-  id           Int      @id @default(autoincrement())
-  tipo         String   @db.VarChar(100)
-  registerdate DateTime @default(now())
-  deleted      Boolean  @default(false)
+  id           Int       @id @default(autoincrement())
+  tipo         String    @db.VarChar(100)
+  registerdate DateTime  @default(now())
+  deleted      Boolean   @default(false)
+  deletedate   DateTime? @db.Date
 
   // Relaciones inversas
   usuarios Usuario[]

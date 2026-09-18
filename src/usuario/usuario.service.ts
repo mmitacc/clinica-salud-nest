@@ -8,55 +8,41 @@ export class UsuarioService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createUsuarioDto: CreateUsuarioDto) {
-    return await this.prisma.usuario.create({
+    return await this.prisma.check.usuario.create({
       data: createUsuarioDto,
-      omit: { deleted: true, password: true },
+      omit: { password: true },
     });
   }
 
   async findAll() {
-    return await this.prisma.usuario.findMany({
-      where: { deleted: false },
-      omit: { deleted: true, password: true, id_especialidad: true },
+    return await this.prisma.check.usuario.findMany({
+      omit: { password: true, id_especialidad: true },
       include: { especialidad: { select: { tipo: true } } },
       orderBy: { id: 'asc' },
     });
   }
 
   async findOne(id: number) {
-    const usuario = await this.prisma.usuario.findFirst({
-      where: { id, deleted: false },
-      omit: { deleted: true, id_especialidad: true, password: true },
-      include: { especialidad: { omit: { deleted: true } } },
+    return await this.prisma.check.usuario.findFirst({
+      where: { id },
+      omit: { id_especialidad: true, password: true },
+      include: { especialidad: { select: { tipo: true } } },
     });
-    if (!usuario)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return usuario;
   }
 
   async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    const usuario = await this.prisma.usuario.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!usuario)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return await this.prisma.usuario.update({
-      where: { id, deleted: false },
+    return await this.prisma.check.usuario.update({
+      where: { id },
       data: updateUsuarioDto,
-      omit: { deleted: true, password: true },
+      omit: { password: true },
     });
   }
 
   async removeSoft(id: number) {
-    const usuario = await this.prisma.usuario.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!usuario)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return await this.prisma.usuario.update({
-      where: { id, deleted: false },
-      data: { deleted: true },
-      omit: { deleted: true, password: true },
+    return await this.prisma.check.usuario.update({
+      where: { id },
+      data: { deleted: true, deletedate: new Date() },
+      omit: { password: true },
     });
   }
 }
