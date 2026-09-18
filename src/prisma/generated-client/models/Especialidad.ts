@@ -39,6 +39,7 @@ export type EspecialidadMinAggregateOutputType = {
   tipo: string | null
   registerdate: Date | null
   deleted: boolean | null
+  deletedate: Date | null
 }
 
 export type EspecialidadMaxAggregateOutputType = {
@@ -46,6 +47,7 @@ export type EspecialidadMaxAggregateOutputType = {
   tipo: string | null
   registerdate: Date | null
   deleted: boolean | null
+  deletedate: Date | null
 }
 
 export type EspecialidadCountAggregateOutputType = {
@@ -53,6 +55,7 @@ export type EspecialidadCountAggregateOutputType = {
   tipo: number
   registerdate: number
   deleted: number
+  deletedate: number
   _all: number
 }
 
@@ -70,6 +73,7 @@ export type EspecialidadMinAggregateInputType = {
   tipo?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
 }
 
 export type EspecialidadMaxAggregateInputType = {
@@ -77,6 +81,7 @@ export type EspecialidadMaxAggregateInputType = {
   tipo?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
 }
 
 export type EspecialidadCountAggregateInputType = {
@@ -84,6 +89,7 @@ export type EspecialidadCountAggregateInputType = {
   tipo?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -178,6 +184,7 @@ export type EspecialidadGroupByOutputType = {
   tipo: string
   registerdate: Date
   deleted: boolean
+  deletedate: Date | null
   _count: EspecialidadCountAggregateOutputType | null
   _avg: EspecialidadAvgAggregateOutputType | null
   _sum: EspecialidadSumAggregateOutputType | null
@@ -208,6 +215,7 @@ export type EspecialidadWhereInput = {
   tipo?: Prisma.StringFilter<"Especialidad"> | string
   registerdate?: Prisma.DateTimeFilter<"Especialidad"> | Date | string
   deleted?: Prisma.BoolFilter<"Especialidad"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Especialidad"> | Date | string | null
   usuarios?: Prisma.UsuarioListRelationFilter
 }
 
@@ -216,6 +224,7 @@ export type EspecialidadOrderByWithRelationInput = {
   tipo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   usuarios?: Prisma.UsuarioOrderByRelationAggregateInput
 }
 
@@ -227,6 +236,7 @@ export type EspecialidadWhereUniqueInput = Prisma.AtLeast<{
   tipo?: Prisma.StringFilter<"Especialidad"> | string
   registerdate?: Prisma.DateTimeFilter<"Especialidad"> | Date | string
   deleted?: Prisma.BoolFilter<"Especialidad"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Especialidad"> | Date | string | null
   usuarios?: Prisma.UsuarioListRelationFilter
 }, "id">
 
@@ -235,6 +245,7 @@ export type EspecialidadOrderByWithAggregationInput = {
   tipo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EspecialidadCountOrderByAggregateInput
   _avg?: Prisma.EspecialidadAvgOrderByAggregateInput
   _max?: Prisma.EspecialidadMaxOrderByAggregateInput
@@ -250,12 +261,14 @@ export type EspecialidadScalarWhereWithAggregatesInput = {
   tipo?: Prisma.StringWithAggregatesFilter<"Especialidad"> | string
   registerdate?: Prisma.DateTimeWithAggregatesFilter<"Especialidad"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Especialidad"> | boolean
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Especialidad"> | Date | string | null
 }
 
 export type EspecialidadCreateInput = {
   tipo: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   usuarios?: Prisma.UsuarioCreateNestedManyWithoutEspecialidadInput
 }
 
@@ -264,6 +277,7 @@ export type EspecialidadUncheckedCreateInput = {
   tipo: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   usuarios?: Prisma.UsuarioUncheckedCreateNestedManyWithoutEspecialidadInput
 }
 
@@ -271,6 +285,7 @@ export type EspecialidadUpdateInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuarios?: Prisma.UsuarioUpdateManyWithoutEspecialidadNestedInput
 }
 
@@ -279,6 +294,7 @@ export type EspecialidadUncheckedUpdateInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuarios?: Prisma.UsuarioUncheckedUpdateManyWithoutEspecialidadNestedInput
 }
 
@@ -287,12 +303,14 @@ export type EspecialidadCreateManyInput = {
   tipo: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type EspecialidadUpdateManyMutationInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EspecialidadUncheckedUpdateManyInput = {
@@ -300,6 +318,7 @@ export type EspecialidadUncheckedUpdateManyInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EspecialidadNullableScalarRelationFilter = {
@@ -312,6 +331,7 @@ export type EspecialidadCountOrderByAggregateInput = {
   tipo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type EspecialidadAvgOrderByAggregateInput = {
@@ -323,6 +343,7 @@ export type EspecialidadMaxOrderByAggregateInput = {
   tipo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type EspecialidadMinOrderByAggregateInput = {
@@ -330,6 +351,7 @@ export type EspecialidadMinOrderByAggregateInput = {
   tipo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type EspecialidadSumOrderByAggregateInput = {
@@ -356,6 +378,7 @@ export type EspecialidadCreateWithoutUsuariosInput = {
   tipo: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type EspecialidadUncheckedCreateWithoutUsuariosInput = {
@@ -363,6 +386,7 @@ export type EspecialidadUncheckedCreateWithoutUsuariosInput = {
   tipo: string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type EspecialidadCreateOrConnectWithoutUsuariosInput = {
@@ -385,6 +409,7 @@ export type EspecialidadUpdateWithoutUsuariosInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EspecialidadUncheckedUpdateWithoutUsuariosInput = {
@@ -392,6 +417,7 @@ export type EspecialidadUncheckedUpdateWithoutUsuariosInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -430,6 +456,7 @@ export type EspecialidadSelect<ExtArgs extends runtime.Types.Extensions.Internal
   tipo?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
   usuarios?: boolean | Prisma.Especialidad$usuariosArgs<ExtArgs>
   _count?: boolean | Prisma.EspecialidadCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["especialidad"]>
@@ -439,6 +466,7 @@ export type EspecialidadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   tipo?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["especialidad"]>
 
 export type EspecialidadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -446,6 +474,7 @@ export type EspecialidadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   tipo?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["especialidad"]>
 
 export type EspecialidadSelectScalar = {
@@ -453,9 +482,10 @@ export type EspecialidadSelectScalar = {
   tipo?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
 }
 
-export type EspecialidadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "registerdate" | "deleted", ExtArgs["result"]["especialidad"]>
+export type EspecialidadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["especialidad"]>
 export type EspecialidadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuarios?: boolean | Prisma.Especialidad$usuariosArgs<ExtArgs>
   _count?: boolean | Prisma.EspecialidadCountOutputTypeDefaultArgs<ExtArgs>
@@ -473,6 +503,7 @@ export type $EspecialidadPayload<ExtArgs extends runtime.Types.Extensions.Intern
     tipo: string
     registerdate: Date
     deleted: boolean
+    deletedate: Date | null
   }, ExtArgs["result"]["especialidad"]>
   composites: {}
 }
@@ -901,6 +932,7 @@ export interface EspecialidadFieldRefs {
   readonly tipo: Prisma.FieldRef<"Especialidad", 'String'>
   readonly registerdate: Prisma.FieldRef<"Especialidad", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Especialidad", 'Boolean'>
+  readonly deletedate: Prisma.FieldRef<"Especialidad", 'DateTime'>
 }
     
 

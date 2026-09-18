@@ -49,6 +49,7 @@ export type ConsultaMinAggregateOutputType = {
   costo: runtime.Decimal | null
   registerdate: Date | null
   deleted: boolean | null
+  deletedate: Date | null
 }
 
 export type ConsultaMaxAggregateOutputType = {
@@ -60,6 +61,7 @@ export type ConsultaMaxAggregateOutputType = {
   costo: runtime.Decimal | null
   registerdate: Date | null
   deleted: boolean | null
+  deletedate: Date | null
 }
 
 export type ConsultaCountAggregateOutputType = {
@@ -71,6 +73,7 @@ export type ConsultaCountAggregateOutputType = {
   costo: number
   registerdate: number
   deleted: number
+  deletedate: number
   _all: number
 }
 
@@ -98,6 +101,7 @@ export type ConsultaMinAggregateInputType = {
   costo?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
 }
 
 export type ConsultaMaxAggregateInputType = {
@@ -109,6 +113,7 @@ export type ConsultaMaxAggregateInputType = {
   costo?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
 }
 
 export type ConsultaCountAggregateInputType = {
@@ -120,6 +125,7 @@ export type ConsultaCountAggregateInputType = {
   costo?: true
   registerdate?: true
   deleted?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -218,6 +224,7 @@ export type ConsultaGroupByOutputType = {
   costo: runtime.Decimal
   registerdate: Date
   deleted: boolean
+  deletedate: Date | null
   _count: ConsultaCountAggregateOutputType | null
   _avg: ConsultaAvgAggregateOutputType | null
   _sum: ConsultaSumAggregateOutputType | null
@@ -252,6 +259,7 @@ export type ConsultaWhereInput = {
   costo?: Prisma.DecimalFilter<"Consulta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFilter<"Consulta"> | Date | string
   deleted?: Prisma.BoolFilter<"Consulta"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Consulta"> | Date | string | null
   paciente?: Prisma.XOR<Prisma.PacienteScalarRelationFilter, Prisma.PacienteWhereInput>
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
 }
@@ -265,6 +273,7 @@ export type ConsultaOrderByWithRelationInput = {
   costo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   paciente?: Prisma.PacienteOrderByWithRelationInput
   usuario?: Prisma.UsuarioOrderByWithRelationInput
 }
@@ -281,6 +290,7 @@ export type ConsultaWhereUniqueInput = Prisma.AtLeast<{
   costo?: Prisma.DecimalFilter<"Consulta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFilter<"Consulta"> | Date | string
   deleted?: Prisma.BoolFilter<"Consulta"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Consulta"> | Date | string | null
   paciente?: Prisma.XOR<Prisma.PacienteScalarRelationFilter, Prisma.PacienteWhereInput>
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
 }, "id">
@@ -294,6 +304,7 @@ export type ConsultaOrderByWithAggregationInput = {
   costo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ConsultaCountOrderByAggregateInput
   _avg?: Prisma.ConsultaAvgOrderByAggregateInput
   _max?: Prisma.ConsultaMaxOrderByAggregateInput
@@ -313,6 +324,7 @@ export type ConsultaScalarWhereWithAggregatesInput = {
   costo?: Prisma.DecimalWithAggregatesFilter<"Consulta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeWithAggregatesFilter<"Consulta"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Consulta"> | boolean
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Consulta"> | Date | string | null
 }
 
 export type ConsultaCreateInput = {
@@ -321,6 +333,7 @@ export type ConsultaCreateInput = {
   costo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   paciente: Prisma.PacienteCreateNestedOneWithoutConsultasInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutConsultasInput
 }
@@ -334,6 +347,7 @@ export type ConsultaUncheckedCreateInput = {
   costo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type ConsultaUpdateInput = {
@@ -342,6 +356,7 @@ export type ConsultaUpdateInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paciente?: Prisma.PacienteUpdateOneRequiredWithoutConsultasNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutConsultasNestedInput
 }
@@ -355,6 +370,7 @@ export type ConsultaUncheckedUpdateInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ConsultaCreateManyInput = {
@@ -366,6 +382,7 @@ export type ConsultaCreateManyInput = {
   costo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type ConsultaUpdateManyMutationInput = {
@@ -374,6 +391,7 @@ export type ConsultaUpdateManyMutationInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ConsultaUncheckedUpdateManyInput = {
@@ -385,6 +403,7 @@ export type ConsultaUncheckedUpdateManyInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ConsultaListRelationFilter = {
@@ -406,6 +425,7 @@ export type ConsultaCountOrderByAggregateInput = {
   costo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type ConsultaAvgOrderByAggregateInput = {
@@ -424,6 +444,7 @@ export type ConsultaMaxOrderByAggregateInput = {
   costo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type ConsultaMinOrderByAggregateInput = {
@@ -435,6 +456,7 @@ export type ConsultaMinOrderByAggregateInput = {
   costo?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type ConsultaSumOrderByAggregateInput = {
@@ -546,6 +568,7 @@ export type ConsultaCreateWithoutPacienteInput = {
   costo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutConsultasInput
 }
 
@@ -557,6 +580,7 @@ export type ConsultaUncheckedCreateWithoutPacienteInput = {
   costo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type ConsultaCreateOrConnectWithoutPacienteInput = {
@@ -597,6 +621,7 @@ export type ConsultaScalarWhereInput = {
   costo?: Prisma.DecimalFilter<"Consulta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFilter<"Consulta"> | Date | string
   deleted?: Prisma.BoolFilter<"Consulta"> | boolean
+  deletedate?: Prisma.DateTimeNullableFilter<"Consulta"> | Date | string | null
 }
 
 export type ConsultaCreateWithoutUsuarioInput = {
@@ -605,6 +630,7 @@ export type ConsultaCreateWithoutUsuarioInput = {
   costo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
   paciente: Prisma.PacienteCreateNestedOneWithoutConsultasInput
 }
 
@@ -616,6 +642,7 @@ export type ConsultaUncheckedCreateWithoutUsuarioInput = {
   costo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type ConsultaCreateOrConnectWithoutUsuarioInput = {
@@ -652,6 +679,7 @@ export type ConsultaCreateManyPacienteInput = {
   costo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type ConsultaUpdateWithoutPacienteInput = {
@@ -660,6 +688,7 @@ export type ConsultaUpdateWithoutPacienteInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutConsultasNestedInput
 }
 
@@ -671,6 +700,7 @@ export type ConsultaUncheckedUpdateWithoutPacienteInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ConsultaUncheckedUpdateManyWithoutPacienteInput = {
@@ -681,6 +711,7 @@ export type ConsultaUncheckedUpdateManyWithoutPacienteInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ConsultaCreateManyUsuarioInput = {
@@ -691,6 +722,7 @@ export type ConsultaCreateManyUsuarioInput = {
   costo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Date | string
   deleted?: boolean
+  deletedate?: Date | string | null
 }
 
 export type ConsultaUpdateWithoutUsuarioInput = {
@@ -699,6 +731,7 @@ export type ConsultaUpdateWithoutUsuarioInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paciente?: Prisma.PacienteUpdateOneRequiredWithoutConsultasNestedInput
 }
 
@@ -710,6 +743,7 @@ export type ConsultaUncheckedUpdateWithoutUsuarioInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ConsultaUncheckedUpdateManyWithoutUsuarioInput = {
@@ -720,6 +754,7 @@ export type ConsultaUncheckedUpdateManyWithoutUsuarioInput = {
   costo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -733,6 +768,7 @@ export type ConsultaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   costo?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["consulta"]>
@@ -746,6 +782,7 @@ export type ConsultaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   costo?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["consulta"]>
@@ -759,6 +796,7 @@ export type ConsultaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   costo?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["consulta"]>
@@ -772,9 +810,10 @@ export type ConsultaSelectScalar = {
   costo?: boolean
   registerdate?: boolean
   deleted?: boolean
+  deletedate?: boolean
 }
 
-export type ConsultaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_paciente" | "id_usuario" | "estado" | "citadate" | "costo" | "registerdate" | "deleted", ExtArgs["result"]["consulta"]>
+export type ConsultaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_paciente" | "id_usuario" | "estado" | "citadate" | "costo" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["consulta"]>
 export type ConsultaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
@@ -803,6 +842,7 @@ export type $ConsultaPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     costo: runtime.Decimal
     registerdate: Date
     deleted: boolean
+    deletedate: Date | null
   }, ExtArgs["result"]["consulta"]>
   composites: {}
 }
@@ -1236,6 +1276,7 @@ export interface ConsultaFieldRefs {
   readonly costo: Prisma.FieldRef<"Consulta", 'Decimal'>
   readonly registerdate: Prisma.FieldRef<"Consulta", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Consulta", 'Boolean'>
+  readonly deletedate: Prisma.FieldRef<"Consulta", 'DateTime'>
 }
     
 

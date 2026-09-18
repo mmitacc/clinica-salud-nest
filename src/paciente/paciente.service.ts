@@ -8,56 +8,34 @@ export class PacienteService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createPacienteDto: CreatePacienteDto) {
-    return await this.prisma.paciente.create({
+    return await this.prisma.check.paciente.create({
       data: createPacienteDto,
-      omit: { deleted: true },
     });
   }
 
   async findAll() {
-    return await this.prisma.paciente.findMany({
-      where: { deleted: false },
-      omit: { deleted: true },
+    return await this.prisma.check.paciente.findMany({
       orderBy: { id: 'asc' },
     });
   }
 
   async findOne(id: number) {
-    const paciente = await this.prisma.paciente.findFirst({
-      where: { id, deleted: false },
-      include: {
-        consultas: { omit: { deleted: true } },
-      },
-      omit: { deleted: true },
+    return await this.prisma.check.paciente.findFirst({
+      where: { id },
     });
-    if (!paciente)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return paciente;
   }
 
   async update(id: number, updatePacienteDto: UpdatePacienteDto) {
-    const paciente = await this.prisma.paciente.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!paciente)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return await this.prisma.paciente.update({
-      where: { id, deleted: false },
+    return await this.prisma.check.paciente.update({
+      where: { id },
       data: updatePacienteDto,
-      omit: { deleted: true },
     });
   }
 
   async removeSoft(id: number) {
-    const paciente = await this.prisma.paciente.findFirst({
-      where: { id, deleted: false },
-    });
-    if (!paciente)
-      throw new NotFoundException(`El ID:${id}, no fue encontrado.`);
-    return await this.prisma.paciente.update({
-      where: { id, deleted: false },
-      data: { deleted: true },
-      omit: { deleted: true },
+    return await this.prisma.check.paciente.update({
+      where: { id },
+      data: { deleted: true, deletedate: new Date() },
     });
   }
 }
