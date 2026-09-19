@@ -8,6 +8,10 @@ import { UsuarioModule } from './usuario/usuario.module.js';
 import { EspecialidadModule } from './especialidad/especialidad.module.js';
 import { HistorialModule } from './historial/historial.module.js';
 import { ConsultaModule } from './consulta/consulta.module.js';
+import { AuthModule } from './auth/auth.module.js';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './auth/guards/roles.guard.js';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 
 // export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -27,8 +31,13 @@ import { ConsultaModule } from './consulta/consulta.module.js';
     EspecialidadModule,
     HistorialModule,
     ConsultaModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    { provide: APP_GUARD, useClass: JwtAuthGuard },
+    { provide: APP_GUARD, useClass: RolesGuard },
+    AppService,
+  ],
 })
 export class AppModule {}
