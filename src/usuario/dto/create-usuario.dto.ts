@@ -11,6 +11,7 @@ import {
   Min,
   IsBoolean,
   IsDate,
+  IsOptional,
 } from 'class-validator';
 
 export class CreateUsuarioDto {
@@ -60,7 +61,7 @@ export class CreateUsuarioDto {
   })
   readonly username: string;
 
-  @IsNotEmpty({ message: "El 'role' es obligatorio.." })
+  @IsOptional()
   @IsEnum(Role, {
     message: `El 'role' debe ser uno de los siguientes valores: ${Object.values(Role).join(', ')}.`,
   })
@@ -74,19 +75,19 @@ export class CreateUsuarioDto {
   @Length(6, 20, {
     message: "El 'password' debe tener entre 6 y 20 caracteres.",
   })
-  @Matches(/[a-z]/, {
-    message: "El 'password' debe contener al menos una letra minúscula.",
-  })
-  @Matches(/[A-Z]/, {
-    message: "El 'password' debe contener al menos una letra mayúscula.",
-  })
-  @Matches(/[0-9]/, {
-    message: "El 'password' debe contener al menos un número.",
-  })
-  @Matches(/[!@#$%^&*(),.?":{}|<>_+\-=\[\]\\\/]/, {
-    message:
-      "El 'password' debe contener al menos un carácter especial (ejemplo: !@#$%^&*(),.?:{}|<>_+-=[]/).",
-  })
+  // @Matches(/[a-z]/, {
+  //   message: "El 'password' debe contener al menos una letra minúscula.",
+  // })
+  // @Matches(/[A-Z]/, {
+  //   message: "El 'password' debe contener al menos una letra mayúscula.",
+  // })
+  // @Matches(/[0-9]/, {
+  //   message: "El 'password' debe contener al menos un número.",
+  // })
+  // @Matches(/[!@#$%^&*(),.?":{}|<>_+\-=\[\]\\\/]/, {
+  //   message:
+  //     "El 'password' debe contener al menos un carácter especial (ejemplo: !@#$%^&*(),.?:{}|<>_+-=[]/).",
+  // })
   readonly password: string;
 
   @Transform(({ value }) =>
