@@ -5,5 +5,6 @@ import { EspecialidadController } from './especialidad.controller.js';
 @Module({
   controllers: [EspecialidadController],
   providers: [EspecialidadService],
+  exports: [EspecialidadService],
 })
 export class EspecialidadModule {}

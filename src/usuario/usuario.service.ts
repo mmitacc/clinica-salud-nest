@@ -2,20 +2,31 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUsuarioDto } from './dto/create-usuario.dto.js';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
+import { EspecialidadService } from '../especialidad/especialidad.service.js';
 import bcrypt from 'bcryptjs';
 import { NewPasswordDto } from '../auth/dto/newPassword-auth.dto.js';
 
 @Injectable()
 export class UsuarioService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly especialidadService: EspecialidadService,
+  ) {}
 
   async create(createUsuarioDto: CreateUsuarioDto) {
-    const { password, ...restoDataUsuario } = createUsuarioDto;
+    const { password, id_especialidad, ...restoDataUsuario } = createUsuarioDto;
+    let especialidad = null;
+    if (id_especialidad) {
+      especialidad = await this.especialidadService.findOne(id_especialidad);
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
-    return await this.prisma.check.usuario.create({
+    const usuario = await this.prisma.check.usuario.create({
       data: { password: hashedPassword, ...restoDataUsuario },
-      omit: { password: true },
+      omit: { password: true, id_especialidad: true },
     });
+    return especialidad
+      ? { usuario, especialidad: especialidad.tipo }
+      : usuario;
   }
 
   async findByEmail(email: string) {
