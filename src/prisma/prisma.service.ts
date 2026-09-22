@@ -23,7 +23,10 @@ const getExtendedCheck = (check: PrismaClient) => {
           args.where = { deleted: false, ...args.where };
           args.omit = { deleted: true, deletedate: true, ...args.omit };
           const result = await query(args);
-          if (!result) throw new NotFoundException('Registro no encontrado');
+          if (!result)
+            throw new NotFoundException(
+              `Registro no encontrado, ID=${args.where.id} no existe`,
+            );
           return result;
         },
         async findFirstOrThrow({ args, query }) {
@@ -45,7 +48,10 @@ const getExtendedCheck = (check: PrismaClient) => {
           args.where = { deleted: false, ...args.where };
           args.omit = { deleted: true, deletedate: true, ...args.omit };
           const result = await query(args);
-          if (!result) throw new NotFoundException('Registro no encontrado');
+          if (!result)
+            throw new NotFoundException(
+              `Registro no encontrado, ID=${args.where.id} no existe`,
+            );
           return result;
         },
       },

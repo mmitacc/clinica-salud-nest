@@ -48,8 +48,18 @@ export class PrismaExceptionFilter implements ExceptionFilter {
           'No se puede procesar tu operación porque romperia una relacion requerida por otra tabla.',
         );
         break;
+      case 'P2020':
+        nestException = new BadRequestException(
+          'El valor ingresado esta fuera del rango.',
+        );
+        break;
       case 'P2025':
         nestException = new NotFoundException('Registro no encontrado.');
+        break;
+      case 'P2039':
+        nestException = new BadRequestException(
+          'El ID enviado supera el límite numérico permitido.',
+        );
         break;
       default:
         console.error('Prisma Error No Mapeado:', exception);
