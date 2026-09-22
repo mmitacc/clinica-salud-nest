@@ -5,6 +5,7 @@ import { NewPasswordDto } from './dto/newPassword-auth.dto.js';
 import { LoginAuthDto } from './dto/login-auth.dto.js';
 import { Public } from './decorators/public.decorator.js';
 import { Roles } from './decorators/roles.decorator.js';
+import { User } from './decorators/user.decarator.js';
 
 @Controller('auth')
 export class AuthController {
@@ -25,12 +26,15 @@ export class AuthController {
   // Trae los datos del usuario logeado
   @Patch('new-password')
   async newPassword(
-    @Req() req: Request & { user: unknown },
+    @User('email') email: string, // Uso de @User, para traer solo 'email' del usuario logeado
     @Body() newPasswordDto: NewPasswordDto,
   ) {
-    return this.authService.newPassword(
-      (req.user as CreateUsuarioDto).email,
-      newPasswordDto,
-    );
+    return this.authService.newPassword(email, newPasswordDto);
+  }
+
+  @Get('profile')
+  async profile(@User() user: any) {
+    // Uso de @User, para traer toda la data del usuario logeado
+    return user;
   }
 }
