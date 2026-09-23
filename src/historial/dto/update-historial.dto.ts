@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType } from '@nestjs/swagger';
 import { CreateHistorialDto } from './create-historial.dto.js';
 
 export class UpdateHistorialDto extends PartialType(CreateHistorialDto) {}

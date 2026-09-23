@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Role } from '../../prisma/generated-client/enums.js';
 import { Transform, Type } from 'class-transformer';
 import {
@@ -15,6 +16,10 @@ import {
 } from 'class-validator';
 
 export class CreateUsuarioDto {
+  @ApiProperty({
+    example: 'Peter',
+    description: 'Detalla los nombres del Usuario',
+  })
   @IsString({ message: "Los 'nombres' deben ser un texto." })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({
@@ -26,6 +31,10 @@ export class CreateUsuarioDto {
   })
   readonly nombres: string;
 
+  @ApiProperty({
+    example: 'Parker',
+    description: 'Detalla los apellidos del Usuario',
+  })
   @IsString({ message: "Los 'apellidos' deben ser un texto." })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({
@@ -37,6 +46,11 @@ export class CreateUsuarioDto {
   })
   readonly apellidos: string;
 
+  @ApiProperty({
+    example: '+51 987564124',
+    description:
+      'Detalla el número de teléfono del Usuario incluido su código del país',
+  })
   @IsString({ message: "El 'telefono' debe ser un texto." })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({
@@ -47,6 +61,10 @@ export class CreateUsuarioDto {
   })
   readonly telefono: string;
 
+  @ApiProperty({
+    example: 'peter',
+    description: 'Detalla el username del Usuario',
+  })
   @IsString({ message: "El 'username' debe ser un texto." })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({
@@ -61,12 +79,20 @@ export class CreateUsuarioDto {
   })
   readonly username: string;
 
+  @ApiProperty({
+    example: 'MEDICO',
+    description: 'Detalla el role del Usuario',
+  })
   @IsOptional()
   @IsEnum(Role, {
     message: `El 'role' debe ser uno de los siguientes valores: ${Object.values(Role).join(', ')}.`,
   })
   readonly role: Role;
 
+  @ApiProperty({
+    example: 'mi_password',
+    description: 'Detalla la contraseña secreta del Usuario',
+  })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsString({ message: "El 'password' debe ser un texto." })
   @IsNotEmpty({
@@ -90,6 +116,10 @@ export class CreateUsuarioDto {
   // })
   readonly password: string;
 
+  @ApiProperty({
+    example: 'peter@clinica.com',
+    description: 'Detalla el email del Usuario con el formato correcto',
+  })
   @Transform(({ value }) =>
     typeof value === 'string' ? value.trim().toLowerCase() : value,
   )
@@ -104,6 +134,10 @@ export class CreateUsuarioDto {
   )
   readonly email: string;
 
+  @ApiProperty({
+    example: true,
+    description: 'Detalla si el Usuario es de género masculino',
+  })
   @Transform(({ value }) => {
     if (value === 'true') return true;
     if (value === 'false') return false;
@@ -115,6 +149,11 @@ export class CreateUsuarioDto {
   })
   readonly masculino: boolean;
 
+  @ApiProperty({
+    example: '1980-01-01',
+    description:
+      'Detalla la fecha de nacimiento del Usuario en formato internacional (AAAA-MM-DD)',
+  })
   @Transform(({ value }) => {
     if (value instanceof Date) return value;
     const fecha = new Date(value);
@@ -127,6 +166,11 @@ export class CreateUsuarioDto {
   })
   readonly fechanacimiento: Date;
 
+  @ApiProperty({
+    example: 4,
+    description:
+      'El ID de la Especialidad si el Usuario es un Médico, es un número entero y opcional',
+  })
   @Type(() => Number)
   @IsNotEmpty({ message: 'El "id_especialidad" es obligatorio.' })
   @IsInt({ message: 'El "id_especialidad" debe ser un numero entero.' })
