@@ -13,7 +13,7 @@ import { UpdateHistorialDto } from './dto/update-historial.dto.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
-@Controller('historial')
+@Controller('historiales')
 @ApiBearerAuth()
 export class HistorialController {
   constructor(private readonly historialService: HistorialService) {}

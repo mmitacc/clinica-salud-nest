@@ -13,7 +13,7 @@ import { UpdatePacienteDto } from './dto/update-paciente.dto.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
-@Controller('paciente')
+@Controller('pacientes')
 @ApiBearerAuth()
 export class PacienteController {
   constructor(private readonly pacienteService: PacienteService) {}

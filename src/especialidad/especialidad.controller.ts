@@ -13,7 +13,7 @@ import { UpdateEspecialidadDto } from './dto/update-especialidad.dto.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
-@Controller('especialidad')
+@Controller('especialidades')
 @ApiBearerAuth()
 export class EspecialidadController {
   constructor(private readonly especialidadService: EspecialidadService) {}
