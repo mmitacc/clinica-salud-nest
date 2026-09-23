@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import {
   IsEmail,
@@ -8,6 +9,28 @@ import {
 } from 'class-validator';
 
 export class LoginAuthDto {
+  @ApiProperty({
+    example: 'user@dominio.com',
+    description: 'Correo electrónico con formato correcto del Usuario',
+  })
+  @Transform(({ value }) =>
+    typeof value === 'string' ? value.trim().toLowerCase() : value,
+  )
+  @IsString({ message: "El 'email' debe ser un texto." })
+  @IsNotEmpty({ message: "El 'email' es obligatorio." })
+  @IsEmail(
+    {},
+    {
+      message:
+        "El 'email' debe tener un formato correcto (ejemplo@dominio.com).",
+    },
+  )
+  readonly email: string;
+
+  @ApiProperty({
+    example: 'Secreto123',
+    description: 'Contraseña secreta del Usuario',
+  })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsString({ message: "El 'password' debe ser un texto." })
   @IsNotEmpty({
@@ -30,18 +53,4 @@ export class LoginAuthDto {
   //     "El 'password' debe contener al menos un carácter especial (ejemplo: !@#$%^&*(),.?:{}|<>_+-=[]/).",
   // })
   readonly password: string;
-
-  @Transform(({ value }) =>
-    typeof value === 'string' ? value.trim().toLowerCase() : value,
-  )
-  @IsString({ message: "El 'email' debe ser un texto." })
-  @IsNotEmpty({ message: "El 'email' es obligatorio." })
-  @IsEmail(
-    {},
-    {
-      message:
-        "El 'email' debe tener un formato correcto (ejemplo@dominio.com).",
-    },
-  )
-  readonly email: string;
 }

@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import {
   IsNotEmpty,
@@ -9,6 +10,10 @@ import {
 } from 'class-validator';
 
 export class CreatePacienteDto {
+  @ApiProperty({
+    example: 'Jose Luis',
+    description: 'Detalla los nombres del Paciente',
+  })
   @IsString({ message: "Los 'nombres' deben ser un texto." })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({
@@ -20,6 +25,10 @@ export class CreatePacienteDto {
   })
   readonly nombres: string;
 
+  @ApiProperty({
+    example: 'Perez Quispe',
+    description: 'Detalla los apellidos del Paciente',
+  })
   @IsString({ message: "Los 'apellidos' deben ser un texto." })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({
@@ -31,6 +40,11 @@ export class CreatePacienteDto {
   })
   readonly apellidos: string;
 
+  @ApiProperty({
+    example: '+51 948125565',
+    description:
+      'Detalla el número de teléfono del Paciente incluido su código del país',
+  })
   @IsString({ message: "El 'telefono' debe ser un texto." })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({
@@ -41,6 +55,10 @@ export class CreatePacienteDto {
   })
   readonly telefono: string;
 
+  @ApiProperty({
+    example: 'joseperez@dominio.com',
+    description: 'Detalla el email del paciente con el formato correcto',
+  })
   @Transform(({ value }) =>
     typeof value === 'string' ? value.trim().toLowerCase() : value,
   )
@@ -55,6 +73,10 @@ export class CreatePacienteDto {
   )
   readonly email: string;
 
+  @ApiProperty({
+    example: true,
+    description: 'Detalla si el Paciente es de género masculino',
+  })
   @Transform(({ value }) => {
     if (value === 'true') return true;
     if (value === 'false') return false;
@@ -66,6 +88,11 @@ export class CreatePacienteDto {
   })
   readonly masculino: boolean;
 
+  @ApiProperty({
+    example: '1985-05-21',
+    description:
+      'Detalla la fecha de nacimiento del Paciente en formato internacional (AAAA-MM-DD)',
+  })
   @Transform(({ value }) => {
     if (value instanceof Date) return value;
     const fecha = new Date(value);
@@ -78,6 +105,10 @@ export class CreatePacienteDto {
   })
   readonly fechanacimiento: Date;
 
+  @ApiProperty({
+    example: 'O+',
+    description: 'Detalla el tipo sanguineo del Paciente',
+  })
   @IsString({ message: "El 'tiposangre' debe ser un texto." })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({
@@ -88,6 +119,10 @@ export class CreatePacienteDto {
   })
   readonly tiposangre: string;
 
+  @ApiProperty({
+    example: 'Penicilina',
+    description: 'Detalla algún alérgico conocido del Paciente',
+  })
   @IsString({ message: "Las 'alergias' deben ser un texto." })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({

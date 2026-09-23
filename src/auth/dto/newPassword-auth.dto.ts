@@ -1,7 +1,12 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsNotEmpty, IsString, Matches, Length } from 'class-validator';
 
 export class NewPasswordDto {
+  @ApiProperty({
+    example: 'Secreto123',
+    description: 'Nueva contraseña secreta segura del Usuario',
+  })
   @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsString({ message: "El 'password' debe ser un texto." })
   @IsNotEmpty({
