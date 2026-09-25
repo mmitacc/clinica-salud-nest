@@ -6,6 +6,7 @@ import { PrismaExceptionFilter } from './prisma/prisma-exception.filter.js';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { LoggingInterceptor } from './common/logging.interceptor.js';
 import { ConfigService } from '@nestjs/config';
+import { TransformerInterceptor } from './common/transformer.interceptor.js';
 // import { AppModule, ObserveInstrument } from './app.module.js';
 
 async function bootstrap() {
@@ -26,7 +27,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Clínica: SALUD INTEGRAL')
-    .setDescription('API de la clínica, migrada a NestJS')
+    .setDescription('API de la clínica, migrada a NestJS. Por mmitacc.')
     .setVersion('1.0.0')
     .addBearerAuth()
     .build();
@@ -35,6 +36,7 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document);
 
   app.useGlobalInterceptors(new LoggingInterceptor());
+  app.useGlobalInterceptors(new TransformerInterceptor());
 
   const configService = app.get(ConfigService);
 
