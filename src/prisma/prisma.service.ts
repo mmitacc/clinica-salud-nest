@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from './generated-client/client.js';
+import { ConfigService } from '@nestjs/config';
 
 // 1.- Extendemos un nuevo tipo para el autocompletado en prisma
 type ExtendedPrismaCheck = ReturnType<typeof getExtendedCheck>;
@@ -65,9 +66,9 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
   // 4. Creamos una nueva propiedad 'check' con un tipado estricto
   public check!: ExtendedPrismaCheck;
 
-  constructor() {
+  constructor(private readonly configService: ConfigService) {
     const adapter = new PrismaPg({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: configService.getOrThrow<string>('DATABASE_URL'),
     });
     super({ adapter });
   }

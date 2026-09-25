@@ -5,10 +5,14 @@ import { UsuarioService } from '../usuario/usuario.service.js';
 import { CreateUsuarioDto } from '../usuario/dto/create-usuario.dto.js';
 import { LoginAuthDto } from './dto/login-auth.dto.js';
 import { NewPasswordDto } from './dto/newPassword-auth.dto.js';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly usuarioService: UsuarioService) {}
+  constructor(
+    private readonly usuarioService: UsuarioService,
+    private readonly configService: ConfigService,
+  ) {}
 
   async register(createUsuarioDto: CreateUsuarioDto) {
     return this.usuarioService.create(createUsuarioDto);
@@ -25,7 +29,7 @@ export class AuthService {
     const { id, username, email, role } = usuario;
     const token = jwt.sign(
       { id, username, email, role },
-      process.env.JWT_SECRET as string,
+      this.configService.getOrThrow<string>('JWT_SECRET'),
       { expiresIn: '8h' },
     );
     return { token };
