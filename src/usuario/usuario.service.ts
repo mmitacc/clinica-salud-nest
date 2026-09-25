@@ -21,7 +21,10 @@ export class UsuarioService {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const usuario = await this.prisma.check.usuario.create({
-      data: { password: hashedPassword, ...restoDataUsuario },
+      data: {
+        password: hashedPassword,
+        ...restoDataUsuario,
+      },
       omit: { password: true, id_especialidad: true },
     });
     return especialidad
