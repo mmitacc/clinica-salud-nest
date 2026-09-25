@@ -5,6 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { PrismaExceptionFilter } from './prisma/prisma-exception.filter.js';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { LoggingInterceptor } from './common/logging.interceptor.js';
+import { ConfigService } from '@nestjs/config';
 // import { AppModule, ObserveInstrument } from './app.module.js';
 
 async function bootstrap() {
@@ -35,6 +36,8 @@ async function bootstrap() {
 
   app.useGlobalInterceptors(new LoggingInterceptor());
 
-  await app.listen(process.env.PORT ?? 3000);
+  const configService = app.get(ConfigService);
+
+  await app.listen(configService.getOrThrow<number>('PORT') ?? 3000);
 }
 await bootstrap();
