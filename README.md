@@ -9,15 +9,15 @@ Este API es una API RESTful que permite la gestión de usuarios, pacientes, medi
 1.- Clonar el repositorio de la url
     `https://github.com/mmitacc/clinica-salud-nest`
 2.- Instalar las dependencias
-    `npm install`
+    `pnpm install`
 3.- Actualizar/crear el archivo .env con tu nombre de base de datos, numero puerto local host (3000)
     y password de Postgresql (se tiene un ejemplo en el archivo .env.ejemplo)
 4.- Para migrar/crear los schemas/tablas y base de datos postgresql con prisma: 
-    `npx prisma migrate dev --name init`
+    `pnpm prisma migrate dev --name init`
 5.- Para crear/actualizar el cliente prisma que se comunica con tu base de datos: 
-    `npx prisma generate`
+    `pnpm prisma generate`
 6.- Para cargar data de test en base de datos: 
-    `npm run seed-data`
+    `pnpm run seed-data`
 7.- Finalmente, para levantar el servidor backend 
     `pnpm run start:dev`
 8.- Existe una ruta para la documentación completa de la API en el puerto
