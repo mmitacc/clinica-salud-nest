@@ -40,6 +40,15 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
 
+  // === CONFIGURACIÓN DE CORS ===
+  app.enableCors({
+    origin: configService.get<string>('FRONTEND_URL') ?? 'http://localhost:5173', // URL de tu frontend
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Requerido si envías cookies o headers de sesión (ej. HttpOnly cookies)
+    allowedHeaders: 'Content-Type, Authorization', // Asegura que estos headers estén permitidos
+  });
+
+  
   await app.listen(configService.getOrThrow<number>('PORT') ?? 3000);
 }
 await bootstrap();
