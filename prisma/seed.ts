@@ -1,7 +1,13 @@
-import { PrismaService } from '../src/prisma/prisma.service.js';
+import { PrismaClient } from '../src/prisma/generated-client/client.js';
+import { PrismaPg } from '@prisma/adapter-pg';
 import { Role, EstadoCita } from '../src/prisma/generated-client/enums.js';
 import bcrypt from 'bcryptjs';
-const prisma = new PrismaService();
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+});
 
 async function main() {
   console.log('Iniciando la siembra de datos (Seed)...');
