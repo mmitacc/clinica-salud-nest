@@ -13,6 +13,12 @@ dotenv.config();
 const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
 });
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+});
 
 async function main() {
   console.log('Iniciando la siembra de datos (Seed)...');
