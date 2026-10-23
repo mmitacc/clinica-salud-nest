@@ -84,6 +84,7 @@ export const PacienteScalarFieldEnum = {
   fechanacimiento: 'fechanacimiento',
   tiposangre: 'tiposangre',
   alergias: 'alergias',
+  estado: 'estado',
   registerdate: 'registerdate',
   deleted: 'deleted',
   deletedate: 'deletedate'

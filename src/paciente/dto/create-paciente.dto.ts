@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Transform, Type } from 'class-transformer';
+import { Transform } from 'class-transformer';
 import {
   IsNotEmpty,
   IsString,
@@ -7,7 +7,13 @@ import {
   IsEmail,
   IsBoolean,
   IsDate,
+  IsOptional,
+  IsEnum,
 } from 'class-validator';
+import {
+  EstadoPaciente,
+  TipoSangre,
+} from '../../prisma/generated-client/enums.js';
 
 export class CreatePacienteDto {
   @ApiProperty({
@@ -106,18 +112,16 @@ export class CreatePacienteDto {
   readonly fechanacimiento: Date;
 
   @ApiProperty({
-    example: 'O+',
+    example: TipoSangre.O_POS,
     description: 'Detalla el tipo sanguineo del Paciente',
   })
-  @IsString({ message: "El 'tiposangre' debe ser un texto." })
-  @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
   @IsNotEmpty({
     message: "El 'tiposangre' es obligatorio y no debe contener solo espacios.",
   })
-  @Length(2, 3, {
-    message: "El 'tiposangre' debe tener entre 2 y 3 caracteres.",
+  @IsEnum(TipoSangre, {
+    message: `El 'tipo de sangre' debe ser uno de los siguientes valores: ${Object.values(TipoSangre).join(', ')}.`,
   })
-  readonly tiposangre: string;
+  readonly tiposangre: TipoSangre;
 
   @ApiProperty({
     example: 'Penicilina',
@@ -133,4 +137,14 @@ export class CreatePacienteDto {
     message: "Las 'alergias' deben tener entre 7 y 150 caracteres.",
   })
   readonly alergias: string;
+
+  @ApiProperty({
+    example: 'ACTIVO',
+    description: 'Detalla el estado actual del Paciente',
+  })
+  @IsOptional()
+  @IsEnum(EstadoPaciente, {
+    message: `El 'estado' debe ser uno de los siguientes valores: ${Object.values(EstadoPaciente).join(', ')}.`,
+  })
+  readonly estado: EstadoPaciente;
 }

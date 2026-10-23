@@ -45,8 +45,8 @@ import Joi from 'joi';
   ],
   controllers: [AppController],
   providers: [
-    { provide: APP_GUARD, useClass: JwtAuthGuard },
-    { provide: APP_GUARD, useClass: RolesGuard },
+    // { provide: APP_GUARD, useClass: JwtAuthGuard },
+    // { provide: APP_GUARD, useClass: RolesGuard },
     AppService,
   ],
 })

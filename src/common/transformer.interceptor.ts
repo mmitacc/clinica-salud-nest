@@ -19,6 +19,7 @@ export class TransformerInterceptor<T> implements NestInterceptor<
     return next.handle().pipe(
       map((data) => ({
         data,
+        total: Array.isArray(data) ? data.length : 1,
         timestamp: new Date().toISOString(),
       })),
     );

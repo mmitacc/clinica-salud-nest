@@ -1,7 +1,18 @@
-import { PrismaService } from '../src/prisma/prisma.service.js';
-import { Role, EstadoCita } from '../src/prisma/generated-client/enums.js';
+import { PrismaClient } from '../src/prisma/generated-client/client.js';
+import { PrismaPg } from '@prisma/adapter-pg';
+import {
+  Role,
+  EstadoCita,
+  EstadoPaciente,
+  TipoSangre,
+} from '../src/prisma/generated-client/enums.js';
 import bcrypt from 'bcryptjs';
-const prisma = new PrismaService();
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+});
 
 async function main() {
   console.log('Iniciando la siembra de datos (Seed)...');
@@ -37,6 +48,7 @@ async function main() {
 
   // 2. Insertar Usuarios (Exactamente 5)
   const hashComun = await bcrypt.hash('123456', 10);
+  const hashSAdmin = await bcrypt.hash('Man.123', 10);
   await prisma.usuario.createMany({
     data: [
       {
@@ -46,7 +58,7 @@ async function main() {
         masculino: true,
         fechanacimiento: new Date('1985-04-12'),
         email: 'manu@clinica.com',
-        password: hashComun,
+        password: hashSAdmin,
         role: Role.ADMIN,
         username: 'admin',
       },
@@ -109,8 +121,9 @@ async function main() {
         email: 'juan.perez@email.com',
         masculino: true,
         fechanacimiento: new Date('1990-05-15'),
-        tiposangre: 'O+',
+        tiposangre: TipoSangre.O_POS,
         alergias: 'Penicilina',
+        estado: EstadoPaciente.ACTIVO,
       },
       {
         nombres: 'María Fernanda',
@@ -119,7 +132,9 @@ async function main() {
         email: 'maria.diaz@email.com',
         masculino: false,
         fechanacimiento: new Date('1995-08-22'),
-        tiposangre: 'A+',
+        tiposangre: TipoSangre.O_POS,
+        alergias: 'Ninguna',
+        estado: EstadoPaciente.ACTIVO,
       },
       {
         nombres: 'Luis Antonio',
@@ -128,7 +143,9 @@ async function main() {
         email: 'luis.castro@email.com',
         masculino: true,
         fechanacimiento: new Date('1978-12-05'),
-        tiposangre: 'O-',
+        tiposangre: TipoSangre.A_POS,
+        alergias: 'Ninguna',
+        estado: EstadoPaciente.EN_ESPERA,
       },
       {
         nombres: 'Ana Lucía',
@@ -137,8 +154,10 @@ async function main() {
         email: 'ana.torres@email.com',
         masculino: false,
         fechanacimiento: new Date('2018-03-14'),
-        tiposangre: 'A+',
-      }, // Candidato a pediatría
+        tiposangre: TipoSangre.O_POS,
+        alergias: 'Ninguna',
+        estado: EstadoPaciente.ACTIVO,
+      },
       {
         nombres: 'Gabriel José',
         apellidos: 'Mendoza Luna',
@@ -146,8 +165,10 @@ async function main() {
         email: 'gabriel.mendoza@email.com',
         masculino: true,
         fechanacimiento: new Date('2020-07-19'),
-        tiposangre: 'B+',
-      }, // Candidato a pediatría
+        tiposangre: TipoSangre.O_NEG,
+        alergias: 'A gatos',
+        estado: EstadoPaciente.ACTIVO,
+      },
       {
         nombres: 'Carmen Rosa',
         apellidos: 'Palomino Soto',
@@ -155,7 +176,9 @@ async function main() {
         email: 'carmen.palomino@email.com',
         masculino: false,
         fechanacimiento: new Date('1965-01-25'),
-        tiposangre: 'AB+',
+        tiposangre: TipoSangre.O_POS,
+        alergias: 'Penicilina',
+        estado: EstadoPaciente.INACTIVO,
       },
     ],
   });
@@ -262,93 +285,169 @@ async function main() {
     ],
   });
 
-  // 5. Insertar Consultas (Exactamente 12)
+  // 5. Insertar Consultas (Exactamente 22)
+  function restarDias(fechaStr: string, diasARestar: number): string {
+    const fecha = new Date(fechaStr);
+    fecha.setDate(fecha.getDate() - diasARestar);
+    return fecha.toISOString().split('T')[0];
+  }
+  const hoy: string = new Date().toISOString().split('T')[0];
   await prisma.consulta.createMany({
     data: [
       {
         id_paciente: 1,
         id_usuario: 1,
         estado: EstadoCita.COMPLETADA,
-        citadate: new Date('2026-01-10T09:00:00Z'),
+        citadate: new Date(restarDias(hoy, 1) + 'T09:00:00Z'),
         costo: 50.0,
       },
       {
         id_paciente: 1,
         id_usuario: 1,
         estado: EstadoCita.COMPLETADA,
-        citadate: new Date('2026-02-15T10:30:00Z'),
+        citadate: new Date(restarDias(hoy, 2) + 'T10:30:00Z'),
         costo: 50.0,
       },
       {
         id_paciente: 2,
         id_usuario: 1,
         estado: EstadoCita.COMPLETADA,
-        citadate: new Date('2026-03-01T11:00:00Z'),
+        citadate: new Date(restarDias(hoy, 1) + 'T11:00:00Z'),
         costo: 60.0,
       },
       {
         id_paciente: 2,
         id_usuario: 1,
         estado: EstadoCita.COMPLETADA,
-        citadate: new Date('2026-03-15T16:00:00Z'),
+        citadate: new Date(restarDias(hoy, 3) + 'T16:00:00Z'),
         costo: 50.0,
       },
       {
         id_paciente: 3,
         id_usuario: 1,
         estado: EstadoCita.COMPLETADA,
-        citadate: new Date('2026-04-10T08:30:00Z'),
+        citadate: new Date(restarDias(hoy, 1) + 'T08:30:00Z'),
         costo: 50.0,
       },
       {
         id_paciente: 3,
         id_usuario: 1,
         estado: EstadoCita.COMPLETADA,
-        citadate: new Date('2026-05-12T09:15:00Z'),
+        citadate: new Date(restarDias(hoy, 3) + 'T09:15:00Z'),
         costo: 50.0,
       },
       {
         id_paciente: 4,
         id_usuario: 1,
         estado: EstadoCita.PROGRAMADA,
-        citadate: new Date('2026-10-03T15:00:00Z'),
+        citadate: new Date(restarDias(hoy, 3) + 'T15:00:00Z'),
         costo: 70.0,
       }, // Pediatría
       {
         id_paciente: 4,
         id_usuario: 1,
         estado: EstadoCita.CANCELADA,
-        citadate: new Date('2026-07-20T10:00:00Z'),
+        citadate: new Date(restarDias(hoy, 2) + 'T10:00:00Z'),
         costo: 50.0,
       },
       {
         id_paciente: 5,
         id_usuario: 2,
         estado: EstadoCita.COMPLETADA,
-        citadate: new Date('2026-08-05T11:30:00Z'),
+        citadate: new Date(restarDias(hoy, 1) + 'T11:30:00Z'),
         costo: 70.0,
       },
       {
         id_paciente: 5,
         id_usuario: 2,
         estado: EstadoCita.COMPLETADA,
-        citadate: new Date('2026-08-25T15:45:00Z'),
+        citadate: new Date(restarDias(hoy, 1) + 'T15:45:00Z'),
         costo: 50.0,
       },
       {
         id_paciente: 6,
         id_usuario: 2,
         estado: EstadoCita.CANCELADA,
-        citadate: new Date('2026-09-01T12:00:00Z'),
+        citadate: new Date(restarDias(hoy, 2) + 'T12:00:00Z'),
         costo: 55.0,
       },
       {
         id_paciente: 6,
         id_usuario: 2,
         estado: EstadoCita.PROGRAMADA,
-        citadate: new Date('2026-09-25T10:00:00Z'),
+        citadate: new Date(restarDias(hoy, 3) + 'T10:00:00Z'),
         costo: 50.0,
-      }, // Próxima cita programada
+      },
+      {
+        id_paciente: 1,
+        id_usuario: 4,
+        estado: EstadoCita.COMPLETADA,
+        citadate: new Date(hoy + 'T10:00:00Z'),
+        costo: 50.0,
+      },
+      {
+        id_paciente: 2,
+        id_usuario: 5,
+        estado: EstadoCita.COMPLETADA,
+        citadate: new Date(hoy + 'T12:00:00Z'),
+        costo: 50.0,
+      },
+      {
+        id_paciente: 3,
+        id_usuario: 4,
+        estado: EstadoCita.COMPLETADA,
+        citadate: new Date(hoy + 'T09:15:00Z'),
+        costo: 50.0,
+      },
+      {
+        id_paciente: 4,
+        id_usuario: 5,
+        estado: EstadoCita.PROGRAMADA,
+        citadate: new Date(hoy + 'T15:00:00Z'),
+        costo: 50.0,
+      },
+      {
+        id_paciente: 5,
+        id_usuario: 4,
+        estado: EstadoCita.PROGRAMADA,
+        citadate: new Date(hoy + 'T08:45:00Z'),
+        costo: 50.0,
+      },
+      {
+        id_paciente: 6,
+        id_usuario: 5,
+        estado: EstadoCita.PROGRAMADA,
+        citadate: new Date(hoy + 'T14:00:00Z'),
+        costo: 50.0,
+      },
+      {
+        id_paciente: 2,
+        id_usuario: 4,
+        estado: EstadoCita.PROGRAMADA,
+        citadate: new Date(hoy + 'T10:30:00Z'),
+        costo: 50.0,
+      },
+      {
+        id_paciente: 4,
+        id_usuario: 4,
+        estado: EstadoCita.CANCELADA,
+        citadate: new Date(hoy + 'T16:20:00Z'),
+        costo: 50.0,
+      },
+      {
+        id_paciente: 1,
+        id_usuario: 5,
+        estado: EstadoCita.PROGRAMADA,
+        citadate: new Date(hoy + 'T11:00:00Z'),
+        costo: 50.0,
+      },
+      {
+        id_paciente: 3,
+        id_usuario: 5,
+        estado: EstadoCita.PROGRAMADA,
+        citadate: new Date(hoy + 'T09:00:00Z'),
+        costo: 50.0,
+      },
     ],
   });
 
@@ -359,7 +458,7 @@ async function main() {
   );
   console.log('- 6 Pacientes insertados');
   console.log('- 12 Historiales médicos relacionados creados');
-  console.log('- 12 Consultas agendadas creadas');
+  console.log('- 22 Consultas agendadas creadas');
 }
 
 main()

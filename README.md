@@ -17,7 +17,7 @@ Este API es una API RESTful que permite la gestión de usuarios, pacientes, medi
 5.- Para crear/actualizar el cliente prisma que se comunica con tu base de datos: 
     `pnpm prisma generate`
 6.- Para cargar data de test en base de datos: 
-    `pnpm run seed-data`
+    `pnpm run start:seed`
 7.- Finalmente, para levantar el servidor backend 
     `pnpm run start:dev`
 8.- Existe una ruta para la documentación completa de la API en el puerto

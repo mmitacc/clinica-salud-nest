@@ -9,7 +9,10 @@ import {
 } from '@nestjs/common';
 import { ConsultaService } from './consulta.service.js';
 import { CreateConsultaDto } from './dto/create-consulta.dto.js';
-import { UpdateConsultaDto } from './dto/update-consulta.dto.js';
+import {
+  UpdateConsultaDto,
+  UpdateEstadoConsultaDto,
+} from './dto/update-consulta.dto.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
@@ -31,10 +34,31 @@ export class ConsultaController {
     return this.consultaService.findAll();
   }
 
+  @Get('/paciente/:id')
+  @ApiOperation({
+    summary:
+      'Muestra todas las Consultas para un Paciente identificado por su ID',
+  })
+  findAllPaciente(@Param('id') id: string) {
+    return this.consultaService.findAllPaciente(+id);
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Muestra una Consulta identificada por su ID' })
   findOne(@Param('id') id: string) {
     return this.consultaService.findOne(+id);
+  }
+
+  @Roles('MEDICO')
+  @Patch('/medico/:id')
+  @ApiOperation({
+    summary: 'Actualiza el estado de una Consulta identificada por su ID',
+  })
+  updateEstado(
+    @Param('id') id: string,
+    @Body() estado: UpdateEstadoConsultaDto,
+  ) {
+    return this.consultaService.updateEstado(+id, estado);
   }
 
   @Roles('RECEPCIONISTA')

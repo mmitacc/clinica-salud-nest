@@ -4,7 +4,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { CreateConsultaDto } from './dto/create-consulta.dto.js';
-import { UpdateConsultaDto } from './dto/update-consulta.dto.js';
+import {
+  UpdateConsultaDto,
+  UpdateEstadoConsultaDto,
+} from './dto/update-consulta.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { PacienteService } from '../paciente/paciente.service.js';
 import { UsuarioService } from '../usuario/usuario.service.js';
@@ -46,11 +49,27 @@ export class ConsultaService {
     return consultas.map((consulta) => formatDateOut(consulta));
   }
 
+  async findAllPaciente(id: number) {
+    const consultas = await this.prisma.check.consulta.findMany({
+      where: { id_paciente: id },
+      orderBy: { citadate: 'asc' },
+    });
+    return consultas.map((consulta) => formatDateOut(consulta));
+  }
+
   async findOne(id: number) {
     const consulta = await this.prisma.check.consulta.findFirst({
       where: { id },
     });
     return formatDateOut(consulta);
+  }
+
+  async updateEstado(id: number, { estado }: UpdateEstadoConsultaDto) {
+    const consultaEstadoUpdate = await this.prisma.check.consulta.update({
+      where: { id },
+      data: { estado },
+    });
+    return formatDateOut(consultaEstadoUpdate);
   }
 
   async update(id: number, updateConsultaDto: UpdateConsultaDto) {

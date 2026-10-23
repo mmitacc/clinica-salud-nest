@@ -26,3 +26,26 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const EstadoPaciente = {
+  ACTIVO: 'ACTIVO',
+  INACTIVO: 'INACTIVO',
+  EN_ESPERA: 'EN_ESPERA'
+} as const
+
+export type EstadoPaciente = (typeof EstadoPaciente)[keyof typeof EstadoPaciente]
+
+
+export const TipoSangre = {
+  O_POS: 'O_POS',
+  O_NEG: 'O_NEG',
+  A_POS: 'A_POS',
+  A_NEG: 'A_NEG',
+  B_POS: 'B_POS',
+  B_NEG: 'B_NEG',
+  AB_POS: 'AB_POS',
+  AB_NEG: 'AB_NEG'
+} as const
+
+export type TipoSangre = (typeof TipoSangre)[keyof typeof TipoSangre]

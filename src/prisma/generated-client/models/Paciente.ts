@@ -42,8 +42,9 @@ export type PacienteMinAggregateOutputType = {
   email: string | null
   masculino: boolean | null
   fechanacimiento: Date | null
-  tiposangre: string | null
+  tiposangre: $Enums.TipoSangre | null
   alergias: string | null
+  estado: $Enums.EstadoPaciente | null
   registerdate: Date | null
   deleted: boolean | null
   deletedate: Date | null
@@ -57,8 +58,9 @@ export type PacienteMaxAggregateOutputType = {
   email: string | null
   masculino: boolean | null
   fechanacimiento: Date | null
-  tiposangre: string | null
+  tiposangre: $Enums.TipoSangre | null
   alergias: string | null
+  estado: $Enums.EstadoPaciente | null
   registerdate: Date | null
   deleted: boolean | null
   deletedate: Date | null
@@ -74,6 +76,7 @@ export type PacienteCountAggregateOutputType = {
   fechanacimiento: number
   tiposangre: number
   alergias: number
+  estado: number
   registerdate: number
   deleted: number
   deletedate: number
@@ -99,6 +102,7 @@ export type PacienteMinAggregateInputType = {
   fechanacimiento?: true
   tiposangre?: true
   alergias?: true
+  estado?: true
   registerdate?: true
   deleted?: true
   deletedate?: true
@@ -114,6 +118,7 @@ export type PacienteMaxAggregateInputType = {
   fechanacimiento?: true
   tiposangre?: true
   alergias?: true
+  estado?: true
   registerdate?: true
   deleted?: true
   deletedate?: true
@@ -129,6 +134,7 @@ export type PacienteCountAggregateInputType = {
   fechanacimiento?: true
   tiposangre?: true
   alergias?: true
+  estado?: true
   registerdate?: true
   deleted?: true
   deletedate?: true
@@ -229,8 +235,9 @@ export type PacienteGroupByOutputType = {
   email: string
   masculino: boolean
   fechanacimiento: Date
-  tiposangre: string
+  tiposangre: $Enums.TipoSangre
   alergias: string
+  estado: $Enums.EstadoPaciente
   registerdate: Date
   deleted: boolean
   deletedate: Date | null
@@ -267,8 +274,9 @@ export type PacienteWhereInput = {
   email?: Prisma.StringFilter<"Paciente"> | string
   masculino?: Prisma.BoolFilter<"Paciente"> | boolean
   fechanacimiento?: Prisma.DateTimeFilter<"Paciente"> | Date | string
-  tiposangre?: Prisma.StringFilter<"Paciente"> | string
+  tiposangre?: Prisma.EnumTipoSangreFilter<"Paciente"> | $Enums.TipoSangre
   alergias?: Prisma.StringFilter<"Paciente"> | string
+  estado?: Prisma.EnumEstadoPacienteFilter<"Paciente"> | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   deleted?: Prisma.BoolFilter<"Paciente"> | boolean
   deletedate?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
@@ -286,6 +294,7 @@ export type PacienteOrderByWithRelationInput = {
   fechanacimiento?: Prisma.SortOrder
   tiposangre?: Prisma.SortOrder
   alergias?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -304,8 +313,9 @@ export type PacienteWhereUniqueInput = Prisma.AtLeast<{
   telefono?: Prisma.StringFilter<"Paciente"> | string
   masculino?: Prisma.BoolFilter<"Paciente"> | boolean
   fechanacimiento?: Prisma.DateTimeFilter<"Paciente"> | Date | string
-  tiposangre?: Prisma.StringFilter<"Paciente"> | string
+  tiposangre?: Prisma.EnumTipoSangreFilter<"Paciente"> | $Enums.TipoSangre
   alergias?: Prisma.StringFilter<"Paciente"> | string
+  estado?: Prisma.EnumEstadoPacienteFilter<"Paciente"> | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   deleted?: Prisma.BoolFilter<"Paciente"> | boolean
   deletedate?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
@@ -323,6 +333,7 @@ export type PacienteOrderByWithAggregationInput = {
   fechanacimiento?: Prisma.SortOrder
   tiposangre?: Prisma.SortOrder
   alergias?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -344,8 +355,9 @@ export type PacienteScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   masculino?: Prisma.BoolWithAggregatesFilter<"Paciente"> | boolean
   fechanacimiento?: Prisma.DateTimeWithAggregatesFilter<"Paciente"> | Date | string
-  tiposangre?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  tiposangre?: Prisma.EnumTipoSangreWithAggregatesFilter<"Paciente"> | $Enums.TipoSangre
   alergias?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  estado?: Prisma.EnumEstadoPacienteWithAggregatesFilter<"Paciente"> | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeWithAggregatesFilter<"Paciente"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Paciente"> | boolean
   deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Paciente"> | Date | string | null
@@ -358,8 +370,9 @@ export type PacienteCreateInput = {
   email: string
   masculino?: boolean
   fechanacimiento: Date | string
-  tiposangre?: string
+  tiposangre?: $Enums.TipoSangre
   alergias?: string
+  estado?: $Enums.EstadoPaciente
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -375,8 +388,9 @@ export type PacienteUncheckedCreateInput = {
   email: string
   masculino?: boolean
   fechanacimiento: Date | string
-  tiposangre?: string
+  tiposangre?: $Enums.TipoSangre
   alergias?: string
+  estado?: $Enums.EstadoPaciente
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -391,8 +405,9 @@ export type PacienteUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fechanacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tiposangre?: Prisma.StringFieldUpdateOperationsInput | string
+  tiposangre?: Prisma.EnumTipoSangreFieldUpdateOperationsInput | $Enums.TipoSangre
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -408,8 +423,9 @@ export type PacienteUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fechanacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tiposangre?: Prisma.StringFieldUpdateOperationsInput | string
+  tiposangre?: Prisma.EnumTipoSangreFieldUpdateOperationsInput | $Enums.TipoSangre
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -425,8 +441,9 @@ export type PacienteCreateManyInput = {
   email: string
   masculino?: boolean
   fechanacimiento: Date | string
-  tiposangre?: string
+  tiposangre?: $Enums.TipoSangre
   alergias?: string
+  estado?: $Enums.EstadoPaciente
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -439,8 +456,9 @@ export type PacienteUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fechanacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tiposangre?: Prisma.StringFieldUpdateOperationsInput | string
+  tiposangre?: Prisma.EnumTipoSangreFieldUpdateOperationsInput | $Enums.TipoSangre
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -454,8 +472,9 @@ export type PacienteUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fechanacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tiposangre?: Prisma.StringFieldUpdateOperationsInput | string
+  tiposangre?: Prisma.EnumTipoSangreFieldUpdateOperationsInput | $Enums.TipoSangre
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -471,6 +490,7 @@ export type PacienteCountOrderByAggregateInput = {
   fechanacimiento?: Prisma.SortOrder
   tiposangre?: Prisma.SortOrder
   alergias?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrder
@@ -490,6 +510,7 @@ export type PacienteMaxOrderByAggregateInput = {
   fechanacimiento?: Prisma.SortOrder
   tiposangre?: Prisma.SortOrder
   alergias?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrder
@@ -505,6 +526,7 @@ export type PacienteMinOrderByAggregateInput = {
   fechanacimiento?: Prisma.SortOrder
   tiposangre?: Prisma.SortOrder
   alergias?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrder
@@ -529,6 +551,14 @@ export type BoolFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type EnumTipoSangreFieldUpdateOperationsInput = {
+  set?: $Enums.TipoSangre
+}
+
+export type EnumEstadoPacienteFieldUpdateOperationsInput = {
+  set?: $Enums.EstadoPaciente
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -578,8 +608,9 @@ export type PacienteCreateWithoutHistorialesInput = {
   email: string
   masculino?: boolean
   fechanacimiento: Date | string
-  tiposangre?: string
+  tiposangre?: $Enums.TipoSangre
   alergias?: string
+  estado?: $Enums.EstadoPaciente
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -594,8 +625,9 @@ export type PacienteUncheckedCreateWithoutHistorialesInput = {
   email: string
   masculino?: boolean
   fechanacimiento: Date | string
-  tiposangre?: string
+  tiposangre?: $Enums.TipoSangre
   alergias?: string
+  estado?: $Enums.EstadoPaciente
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -625,8 +657,9 @@ export type PacienteUpdateWithoutHistorialesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fechanacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tiposangre?: Prisma.StringFieldUpdateOperationsInput | string
+  tiposangre?: Prisma.EnumTipoSangreFieldUpdateOperationsInput | $Enums.TipoSangre
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -641,8 +674,9 @@ export type PacienteUncheckedUpdateWithoutHistorialesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fechanacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tiposangre?: Prisma.StringFieldUpdateOperationsInput | string
+  tiposangre?: Prisma.EnumTipoSangreFieldUpdateOperationsInput | $Enums.TipoSangre
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -656,8 +690,9 @@ export type PacienteCreateWithoutConsultasInput = {
   email: string
   masculino?: boolean
   fechanacimiento: Date | string
-  tiposangre?: string
+  tiposangre?: $Enums.TipoSangre
   alergias?: string
+  estado?: $Enums.EstadoPaciente
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -672,8 +707,9 @@ export type PacienteUncheckedCreateWithoutConsultasInput = {
   email: string
   masculino?: boolean
   fechanacimiento: Date | string
-  tiposangre?: string
+  tiposangre?: $Enums.TipoSangre
   alergias?: string
+  estado?: $Enums.EstadoPaciente
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -703,8 +739,9 @@ export type PacienteUpdateWithoutConsultasInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fechanacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tiposangre?: Prisma.StringFieldUpdateOperationsInput | string
+  tiposangre?: Prisma.EnumTipoSangreFieldUpdateOperationsInput | $Enums.TipoSangre
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -719,8 +756,9 @@ export type PacienteUncheckedUpdateWithoutConsultasInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   fechanacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tiposangre?: Prisma.StringFieldUpdateOperationsInput | string
+  tiposangre?: Prisma.EnumTipoSangreFieldUpdateOperationsInput | $Enums.TipoSangre
   alergias?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -777,6 +815,7 @@ export type PacienteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   fechanacimiento?: boolean
   tiposangre?: boolean
   alergias?: boolean
+  estado?: boolean
   registerdate?: boolean
   deleted?: boolean
   deletedate?: boolean
@@ -795,6 +834,7 @@ export type PacienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   fechanacimiento?: boolean
   tiposangre?: boolean
   alergias?: boolean
+  estado?: boolean
   registerdate?: boolean
   deleted?: boolean
   deletedate?: boolean
@@ -810,6 +850,7 @@ export type PacienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   fechanacimiento?: boolean
   tiposangre?: boolean
   alergias?: boolean
+  estado?: boolean
   registerdate?: boolean
   deleted?: boolean
   deletedate?: boolean
@@ -825,12 +866,13 @@ export type PacienteSelectScalar = {
   fechanacimiento?: boolean
   tiposangre?: boolean
   alergias?: boolean
+  estado?: boolean
   registerdate?: boolean
   deleted?: boolean
   deletedate?: boolean
 }
 
-export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombres" | "apellidos" | "telefono" | "email" | "masculino" | "fechanacimiento" | "tiposangre" | "alergias" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["paciente"]>
+export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombres" | "apellidos" | "telefono" | "email" | "masculino" | "fechanacimiento" | "tiposangre" | "alergias" | "estado" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["paciente"]>
 export type PacienteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   historiales?: boolean | Prisma.Paciente$historialesArgs<ExtArgs>
   consultas?: boolean | Prisma.Paciente$consultasArgs<ExtArgs>
@@ -853,8 +895,9 @@ export type $PacientePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     email: string
     masculino: boolean
     fechanacimiento: Date
-    tiposangre: string
+    tiposangre: $Enums.TipoSangre
     alergias: string
+    estado: $Enums.EstadoPaciente
     registerdate: Date
     deleted: boolean
     deletedate: Date | null
@@ -1290,8 +1333,9 @@ export interface PacienteFieldRefs {
   readonly email: Prisma.FieldRef<"Paciente", 'String'>
   readonly masculino: Prisma.FieldRef<"Paciente", 'Boolean'>
   readonly fechanacimiento: Prisma.FieldRef<"Paciente", 'DateTime'>
-  readonly tiposangre: Prisma.FieldRef<"Paciente", 'String'>
+  readonly tiposangre: Prisma.FieldRef<"Paciente", 'TipoSangre'>
   readonly alergias: Prisma.FieldRef<"Paciente", 'String'>
+  readonly estado: Prisma.FieldRef<"Paciente", 'EstadoPaciente'>
   readonly registerdate: Prisma.FieldRef<"Paciente", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Paciente", 'Boolean'>
   readonly deletedate: Prisma.FieldRef<"Paciente", 'DateTime'>
