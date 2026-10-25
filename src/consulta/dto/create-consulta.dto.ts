@@ -1,6 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsNotEmpty, IsInt, Min, Matches, IsNumber } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+import {
+  IsNotEmpty,
+  IsInt,
+  Min,
+  Matches,
+  IsNumber,
+  Length,
+  IsString,
+} from 'class-validator';
 
 export class CreateConsultaDto {
   @ApiProperty({
@@ -38,6 +46,21 @@ export class CreateConsultaDto {
   })
   readonly horario: string;
   // -------------------------------------------------------------------------------------------
+
+  @ApiProperty({
+    example: 'Desmayos Frecuentes',
+    description:
+      'Detalla el motivo por el cual el paciente se acerco a la Clínica',
+  })
+  @IsString({ message: "El 'motivo' debe ser un texto." })
+  @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
+  @IsNotEmpty({
+    message: "El 'motivo' es obligatorio y no debe contener solo espacios.",
+  })
+  @Length(6, 100, {
+    message: "El 'motivo' debe tener entre 6 y 100 caracteres.",
+  })
+  readonly motivo: string;
 
   @ApiProperty({
     example: 2,

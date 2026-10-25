@@ -36,12 +36,29 @@ export class UsuarioService {
     return await this.prisma.check.usuario.findFirst({ where: { email } });
   }
 
-  async findAll() {
-    return await this.prisma.check.usuario.findMany({
+  async findAllMedico() {
+    const medicos = await this.prisma.check.usuario.findMany({
+      where: { role: 'MEDICO' },
       omit: { password: true, id_especialidad: true },
       include: { especialidad: { select: { tipo: true } } },
       orderBy: { id: 'asc' },
     });
+    return medicos.map(({ especialidad, ...usuario }) => ({
+      ...usuario,
+      especialidad: especialidad?.tipo ?? null,
+    }));
+  }
+
+  async findAll() {
+    const usuarios = await this.prisma.check.usuario.findMany({
+      omit: { password: true, id_especialidad: true },
+      include: { especialidad: { select: { tipo: true } } },
+      orderBy: { id: 'asc' },
+    });
+    return usuarios.map(({ especialidad, ...usuario }) => ({
+      ...usuario,
+      especialidad: especialidad?.tipo ?? null,
+    }));
   }
 
   async findOne(id: number) {

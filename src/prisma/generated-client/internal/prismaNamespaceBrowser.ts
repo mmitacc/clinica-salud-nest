@@ -96,7 +96,6 @@ export type PacienteScalarFieldEnum = (typeof PacienteScalarFieldEnum)[keyof typ
 export const HistorialScalarFieldEnum = {
   id: 'id',
   id_paciente: 'id_paciente',
-  motivo: 'motivo',
   antecedentes: 'antecedentes',
   triaje: 'triaje',
   diagnostico: 'diagnostico',
@@ -117,6 +116,7 @@ export const ConsultaScalarFieldEnum = {
   estado: 'estado',
   citadate: 'citadate',
   costo: 'costo',
+  motivo: 'motivo',
   registerdate: 'registerdate',
   deleted: 'deleted',
   deletedate: 'deletedate'

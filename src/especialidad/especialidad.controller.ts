@@ -19,6 +19,13 @@ export class EspecialidadController {
   constructor(private readonly especialidadService: EspecialidadService) {}
 
   @Roles('ADMIN', 'GERENCIA')
+  @ApiOperation({ summary: 'Reporte de numero de consultas por Especialidad' })
+  @Get('reportes')
+  reportes() {
+    return this.especialidadService.reportConsultaEsp();
+  }
+
+  @Roles('ADMIN', 'GERENCIA')
   @ApiOperation({ summary: 'Registra una nueva Especialidad' })
   @Post()
   create(@Body() createEspecialidadDto: CreateEspecialidadDto) {

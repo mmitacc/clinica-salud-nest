@@ -22,7 +22,7 @@ export class ConsultaService {
   ) {}
 
   async create(createConsultaDto: CreateConsultaDto) {
-    const { fecha, horario, id_usuario, id_paciente, costo } =
+    const { fecha, horario, id_usuario, id_paciente, costo, motivo } =
       createConsultaDto;
     // Formateamos de fecha y horario al campo "citadate"
     const citadate = new Date(`${fecha}T${horario}:00`);
@@ -37,7 +37,7 @@ export class ConsultaService {
         `El paciente con el id=${id_paciente}, no existe.`,
       );
     const consultaCreate = await this.prisma.check.consulta.create({
-      data: { costo, id_usuario, id_paciente, citadate },
+      data: { costo, id_usuario, id_paciente, citadate, motivo },
     });
     return formatDateOut(consultaCreate);
   }

@@ -21,21 +21,6 @@ export class CreateHistorialDto {
   readonly id_paciente: number;
 
   @ApiProperty({
-    example: 'Desmayos Frecuentes',
-    description:
-      'Detalla el motivo por el cual el paciente se acerco a la Clínica',
-  })
-  @IsString({ message: "El 'motivo' debe ser un texto." })
-  @Transform(({ value }) => (typeof value === 'object' ? value.trim() : value))
-  @IsNotEmpty({
-    message: "El 'motivo' es obligatorio y no debe contener solo espacios.",
-  })
-  @Length(6, 100, {
-    message: "El 'motivo' debe tener entre 6 y 100 caracteres.",
-  })
-  readonly motivo: string;
-
-  @ApiProperty({
     example: 'PA: 120/80, FC: 72, Temp: 36.5',
     description:
       'Detalla las medidas de salud basicas del paciente al ingresar a la Consulta Médica',

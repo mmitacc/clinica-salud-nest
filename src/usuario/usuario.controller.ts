@@ -25,6 +25,12 @@ export class UsuarioController {
     return this.usuarioService.create(createUsuarioDto);
   }
 
+  @ApiOperation({ summary: 'Lista todos los Medicos con su especialidad' })
+  @Get('/medico')
+  findAllMedico() {
+    return this.usuarioService.findAllMedico();
+  }
+
   @ApiOperation({ summary: 'Lista todos los Usuarios' })
   @Get()
   findAll() {

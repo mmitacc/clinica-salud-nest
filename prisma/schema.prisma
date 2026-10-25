@@ -70,7 +70,6 @@ model Paciente {
 model Historial {
   id           Int       @id @default(autoincrement())
   id_paciente  Int
-  motivo       String    @db.Text
   antecedentes String?   @db.Text
   triaje       String    @db.Text
   diagnostico  String?   @db.Text
@@ -94,6 +93,7 @@ model Consulta {
   estado       EstadoCita @default(PROGRAMADA)
   citadate     DateTime   @db.Timestamp
   costo        Decimal    @default(50.0) @db.Decimal(10, 2)
+  motivo       String     @db.Text
   registerdate DateTime   @default(now())
   deleted      Boolean    @default(false)
   deletedate   DateTime?  @db.Date

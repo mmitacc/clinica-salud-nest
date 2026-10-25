@@ -13,12 +13,6 @@ dotenv.config();
 const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
 });
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-const prisma = new PrismaClient({
-  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
-});
 
 async function main() {
   console.log('Iniciando la siembra de datos (Seed)...');
@@ -194,7 +188,6 @@ async function main() {
     data: [
       {
         id_paciente: 1,
-        motivo: 'Control anual',
         triaje: 'PA: 120/80, FC: 72, Temp: 36.5',
         diagnostico: 'Paciente sano',
         tratamiento: 'Continuar dieta balanceada',
@@ -202,7 +195,6 @@ async function main() {
       },
       {
         id_paciente: 1,
-        motivo: 'Resfriado común',
         triaje: 'Temp: 38.2, FC: 80',
         diagnostico: 'Rinofaringitis aguda',
         tratamiento: 'Reposo e hidratación',
@@ -210,7 +202,6 @@ async function main() {
       },
       {
         id_paciente: 2,
-        motivo: 'Dolor estomacal',
         triaje: 'PA: 110/70, Temp: 37.0',
         diagnostico: 'Gastritis leve',
         tratamiento: 'Evitar grasas e irritantes',
@@ -218,7 +209,6 @@ async function main() {
       },
       {
         id_paciente: 2,
-        motivo: 'Seguimiento de gastritis',
         triaje: 'PA: 115/75, Temp: 36.6',
         diagnostico: 'Gastritis en resolución',
         tratamiento: 'Alta médica',
@@ -226,7 +216,6 @@ async function main() {
       },
       {
         id_paciente: 3,
-        motivo: 'Evaluación de hipertensión',
         triaje: 'PA: 145/95, Temp: 36.8',
         diagnostico: 'Hipertensión arterial estadio 1',
         tratamiento: 'Monitoreo diario de presión',
@@ -234,7 +223,6 @@ async function main() {
       },
       {
         id_paciente: 3,
-        motivo: 'Control de presión',
         triaje: 'PA: 125/82, Temp: 36.4',
         diagnostico: 'Hipertensión controlada',
         tratamiento: 'Mantener medicación',
@@ -242,7 +230,6 @@ async function main() {
       },
       {
         id_paciente: 4,
-        motivo: 'Fiebre y tos',
         triaje: 'Temp: 39.0, Peso: 18kg',
         diagnostico: 'Faringitis amigdalina',
         tratamiento: 'Compresas frías para fiebre',
@@ -250,7 +237,6 @@ async function main() {
       },
       {
         id_paciente: 4,
-        motivo: 'Control de crecimiento',
         triaje: 'Peso: 19kg, Talla: 110cm',
         diagnostico: 'Desarrollo adecuado para la edad',
         tratamiento: 'Suplementos vitamínicos',
@@ -258,7 +244,6 @@ async function main() {
       },
       {
         id_paciente: 5,
-        motivo: 'Chequeo de vacunas',
         triaje: 'Temp: 36.7, Peso: 14kg',
         diagnostico: 'Esquema de vacunación al día',
         tratamiento: 'Ninguno',
@@ -266,7 +251,6 @@ async function main() {
       },
       {
         id_paciente: 5,
-        motivo: 'Alergia cutánea',
         triaje: 'Temp: 36.9, Peso: 14.5kg',
         diagnostico: 'Dermatitis atópica',
         tratamiento: 'Baños con jabón neutro',
@@ -274,7 +258,6 @@ async function main() {
       },
       {
         id_paciente: 6,
-        motivo: 'Dolor articular en rodilla',
         triaje: 'PA: 130/85, Temp: 36.5',
         diagnostico: 'Sospecha de artrosis',
         tratamiento: 'Evitar sobreesfuerzo, radiografía',
@@ -282,7 +265,6 @@ async function main() {
       },
       {
         id_paciente: 6,
-        motivo: 'Revisión de radiografía',
         triaje: 'PA: 120/80',
         diagnostico: 'Artrosis incipiente de rodilla',
         tratamiento: 'Fisioterapia ligera',
@@ -306,6 +288,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(restarDias(hoy, 1) + 'T09:00:00Z'),
         costo: 50.0,
+        motivo: 'Control anual',
       },
       {
         id_paciente: 1,
@@ -313,6 +296,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(restarDias(hoy, 2) + 'T10:30:00Z'),
         costo: 50.0,
+        motivo: 'Resfriado común',
       },
       {
         id_paciente: 2,
@@ -320,6 +304,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(restarDias(hoy, 1) + 'T11:00:00Z'),
         costo: 60.0,
+        motivo: 'Dolor estomacal',
       },
       {
         id_paciente: 2,
@@ -327,6 +312,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(restarDias(hoy, 3) + 'T16:00:00Z'),
         costo: 50.0,
+        motivo: 'Seguimiento de gastritis',
       },
       {
         id_paciente: 3,
@@ -334,6 +320,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(restarDias(hoy, 1) + 'T08:30:00Z'),
         costo: 50.0,
+        motivo: 'Evaluación de hipertensión',
       },
       {
         id_paciente: 3,
@@ -341,6 +328,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(restarDias(hoy, 3) + 'T09:15:00Z'),
         costo: 50.0,
+        motivo: 'Control de presión',
       },
       {
         id_paciente: 4,
@@ -348,13 +336,15 @@ async function main() {
         estado: EstadoCita.PROGRAMADA,
         citadate: new Date(restarDias(hoy, 3) + 'T15:00:00Z'),
         costo: 70.0,
-      }, // Pediatría
+        motivo: 'Fiebre y tos',
+      },
       {
         id_paciente: 4,
         id_usuario: 1,
         estado: EstadoCita.CANCELADA,
         citadate: new Date(restarDias(hoy, 2) + 'T10:00:00Z'),
         costo: 50.0,
+        motivo: 'Control de crecimiento',
       },
       {
         id_paciente: 5,
@@ -362,6 +352,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(restarDias(hoy, 1) + 'T11:30:00Z'),
         costo: 70.0,
+        motivo: 'Chequeo de vacunas',
       },
       {
         id_paciente: 5,
@@ -369,6 +360,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(restarDias(hoy, 1) + 'T15:45:00Z'),
         costo: 50.0,
+        motivo: 'Alergia cutánea',
       },
       {
         id_paciente: 6,
@@ -376,6 +368,7 @@ async function main() {
         estado: EstadoCita.CANCELADA,
         citadate: new Date(restarDias(hoy, 2) + 'T12:00:00Z'),
         costo: 55.0,
+        motivo: 'Dolor articular en rodilla',
       },
       {
         id_paciente: 6,
@@ -383,6 +376,7 @@ async function main() {
         estado: EstadoCita.PROGRAMADA,
         citadate: new Date(restarDias(hoy, 3) + 'T10:00:00Z'),
         costo: 50.0,
+        motivo: 'Revisión de radiografía',
       },
       {
         id_paciente: 1,
@@ -390,6 +384,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(hoy + 'T10:00:00Z'),
         costo: 50.0,
+        motivo: 'Seguimiento de gastritis',
       },
       {
         id_paciente: 2,
@@ -397,6 +392,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(hoy + 'T12:00:00Z'),
         costo: 50.0,
+        motivo: 'Resfriado común con fiebre',
       },
       {
         id_paciente: 3,
@@ -404,6 +400,7 @@ async function main() {
         estado: EstadoCita.COMPLETADA,
         citadate: new Date(hoy + 'T09:15:00Z'),
         costo: 50.0,
+        motivo: 'Problemas de gastritis',
       },
       {
         id_paciente: 4,
@@ -411,6 +408,7 @@ async function main() {
         estado: EstadoCita.PROGRAMADA,
         citadate: new Date(hoy + 'T15:00:00Z'),
         costo: 50.0,
+        motivo: 'Evaluación de hipertensión control',
       },
       {
         id_paciente: 5,
@@ -418,6 +416,7 @@ async function main() {
         estado: EstadoCita.PROGRAMADA,
         citadate: new Date(hoy + 'T08:45:00Z'),
         costo: 50.0,
+        motivo: 'Control de presión',
       },
       {
         id_paciente: 6,
@@ -425,6 +424,7 @@ async function main() {
         estado: EstadoCita.PROGRAMADA,
         citadate: new Date(hoy + 'T14:00:00Z'),
         costo: 50.0,
+        motivo: 'Dolor articular en hombro',
       },
       {
         id_paciente: 2,
@@ -432,6 +432,7 @@ async function main() {
         estado: EstadoCita.PROGRAMADA,
         citadate: new Date(hoy + 'T10:30:00Z'),
         costo: 50.0,
+        motivo: 'Chequeo de vacunas',
       },
       {
         id_paciente: 4,
@@ -439,6 +440,7 @@ async function main() {
         estado: EstadoCita.CANCELADA,
         citadate: new Date(hoy + 'T16:20:00Z'),
         costo: 50.0,
+        motivo: 'Alergia con problemas estomacales',
       },
       {
         id_paciente: 1,
@@ -446,6 +448,7 @@ async function main() {
         estado: EstadoCita.PROGRAMADA,
         citadate: new Date(hoy + 'T11:00:00Z'),
         costo: 50.0,
+        motivo: 'Fiebre y tos',
       },
       {
         id_paciente: 3,
@@ -453,6 +456,7 @@ async function main() {
         estado: EstadoCita.PROGRAMADA,
         citadate: new Date(hoy + 'T09:00:00Z'),
         costo: 50.0,
+        motivo: 'Rotura de femur',
       },
     ],
   });

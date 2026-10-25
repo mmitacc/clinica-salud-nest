@@ -41,4 +41,43 @@ export class EspecialidadService {
       },
     });
   }
+
+  async reportConsultaEsp() {
+    // CORRECCIÓN: Se eliminó '.check' para acceder directamente al modelo especialidad
+    const reportData = await this.prisma.especialidad.findMany({
+      where: {
+        deleted: false,
+      },
+      select: {
+        tipo: true,
+        usuarios: {
+          select: {
+            _count: {
+              select: {
+                consultas: {
+                  where: {
+                    deleted: false,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return {
+      data: reportData.map((esp) => {
+        const totalConsultas = esp.usuarios.reduce(
+          (sum, u) => sum + u._count.consultas,
+          0,
+        );
+
+        return {
+          especialidad: esp.tipo,
+          total: totalConsultas,
+        };
+      }),
+    };
+  }
 }

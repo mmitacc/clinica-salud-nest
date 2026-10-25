@@ -39,7 +39,6 @@ export type HistorialSumAggregateOutputType = {
 export type HistorialMinAggregateOutputType = {
   id: number | null
   id_paciente: number | null
-  motivo: string | null
   antecedentes: string | null
   triaje: string | null
   diagnostico: string | null
@@ -53,7 +52,6 @@ export type HistorialMinAggregateOutputType = {
 export type HistorialMaxAggregateOutputType = {
   id: number | null
   id_paciente: number | null
-  motivo: string | null
   antecedentes: string | null
   triaje: string | null
   diagnostico: string | null
@@ -67,7 +65,6 @@ export type HistorialMaxAggregateOutputType = {
 export type HistorialCountAggregateOutputType = {
   id: number
   id_paciente: number
-  motivo: number
   antecedentes: number
   triaje: number
   diagnostico: number
@@ -93,7 +90,6 @@ export type HistorialSumAggregateInputType = {
 export type HistorialMinAggregateInputType = {
   id?: true
   id_paciente?: true
-  motivo?: true
   antecedentes?: true
   triaje?: true
   diagnostico?: true
@@ -107,7 +103,6 @@ export type HistorialMinAggregateInputType = {
 export type HistorialMaxAggregateInputType = {
   id?: true
   id_paciente?: true
-  motivo?: true
   antecedentes?: true
   triaje?: true
   diagnostico?: true
@@ -121,7 +116,6 @@ export type HistorialMaxAggregateInputType = {
 export type HistorialCountAggregateInputType = {
   id?: true
   id_paciente?: true
-  motivo?: true
   antecedentes?: true
   triaje?: true
   diagnostico?: true
@@ -222,7 +216,6 @@ export type HistorialGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type HistorialGroupByOutputType = {
   id: number
   id_paciente: number
-  motivo: string
   antecedentes: string | null
   triaje: string
   diagnostico: string | null
@@ -259,7 +252,6 @@ export type HistorialWhereInput = {
   NOT?: Prisma.HistorialWhereInput | Prisma.HistorialWhereInput[]
   id?: Prisma.IntFilter<"Historial"> | number
   id_paciente?: Prisma.IntFilter<"Historial"> | number
-  motivo?: Prisma.StringFilter<"Historial"> | string
   antecedentes?: Prisma.StringNullableFilter<"Historial"> | string | null
   triaje?: Prisma.StringFilter<"Historial"> | string
   diagnostico?: Prisma.StringNullableFilter<"Historial"> | string | null
@@ -274,7 +266,6 @@ export type HistorialWhereInput = {
 export type HistorialOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   id_paciente?: Prisma.SortOrder
-  motivo?: Prisma.SortOrder
   antecedentes?: Prisma.SortOrderInput | Prisma.SortOrder
   triaje?: Prisma.SortOrder
   diagnostico?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -292,7 +283,6 @@ export type HistorialWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.HistorialWhereInput[]
   NOT?: Prisma.HistorialWhereInput | Prisma.HistorialWhereInput[]
   id_paciente?: Prisma.IntFilter<"Historial"> | number
-  motivo?: Prisma.StringFilter<"Historial"> | string
   antecedentes?: Prisma.StringNullableFilter<"Historial"> | string | null
   triaje?: Prisma.StringFilter<"Historial"> | string
   diagnostico?: Prisma.StringNullableFilter<"Historial"> | string | null
@@ -307,7 +297,6 @@ export type HistorialWhereUniqueInput = Prisma.AtLeast<{
 export type HistorialOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   id_paciente?: Prisma.SortOrder
-  motivo?: Prisma.SortOrder
   antecedentes?: Prisma.SortOrderInput | Prisma.SortOrder
   triaje?: Prisma.SortOrder
   diagnostico?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -329,7 +318,6 @@ export type HistorialScalarWhereWithAggregatesInput = {
   NOT?: Prisma.HistorialScalarWhereWithAggregatesInput | Prisma.HistorialScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Historial"> | number
   id_paciente?: Prisma.IntWithAggregatesFilter<"Historial"> | number
-  motivo?: Prisma.StringWithAggregatesFilter<"Historial"> | string
   antecedentes?: Prisma.StringNullableWithAggregatesFilter<"Historial"> | string | null
   triaje?: Prisma.StringWithAggregatesFilter<"Historial"> | string
   diagnostico?: Prisma.StringNullableWithAggregatesFilter<"Historial"> | string | null
@@ -341,7 +329,6 @@ export type HistorialScalarWhereWithAggregatesInput = {
 }
 
 export type HistorialCreateInput = {
-  motivo: string
   antecedentes?: string | null
   triaje: string
   diagnostico?: string | null
@@ -356,7 +343,6 @@ export type HistorialCreateInput = {
 export type HistorialUncheckedCreateInput = {
   id?: number
   id_paciente: number
-  motivo: string
   antecedentes?: string | null
   triaje: string
   diagnostico?: string | null
@@ -368,7 +354,6 @@ export type HistorialUncheckedCreateInput = {
 }
 
 export type HistorialUpdateInput = {
-  motivo?: Prisma.StringFieldUpdateOperationsInput | string
   antecedentes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   triaje?: Prisma.StringFieldUpdateOperationsInput | string
   diagnostico?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -383,7 +368,6 @@ export type HistorialUpdateInput = {
 export type HistorialUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
-  motivo?: Prisma.StringFieldUpdateOperationsInput | string
   antecedentes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   triaje?: Prisma.StringFieldUpdateOperationsInput | string
   diagnostico?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -397,7 +381,6 @@ export type HistorialUncheckedUpdateInput = {
 export type HistorialCreateManyInput = {
   id?: number
   id_paciente: number
-  motivo: string
   antecedentes?: string | null
   triaje: string
   diagnostico?: string | null
@@ -409,7 +392,6 @@ export type HistorialCreateManyInput = {
 }
 
 export type HistorialUpdateManyMutationInput = {
-  motivo?: Prisma.StringFieldUpdateOperationsInput | string
   antecedentes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   triaje?: Prisma.StringFieldUpdateOperationsInput | string
   diagnostico?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -423,7 +405,6 @@ export type HistorialUpdateManyMutationInput = {
 export type HistorialUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
-  motivo?: Prisma.StringFieldUpdateOperationsInput | string
   antecedentes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   triaje?: Prisma.StringFieldUpdateOperationsInput | string
   diagnostico?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -447,7 +428,6 @@ export type HistorialOrderByRelationAggregateInput = {
 export type HistorialCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   id_paciente?: Prisma.SortOrder
-  motivo?: Prisma.SortOrder
   antecedentes?: Prisma.SortOrder
   triaje?: Prisma.SortOrder
   diagnostico?: Prisma.SortOrder
@@ -466,7 +446,6 @@ export type HistorialAvgOrderByAggregateInput = {
 export type HistorialMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   id_paciente?: Prisma.SortOrder
-  motivo?: Prisma.SortOrder
   antecedentes?: Prisma.SortOrder
   triaje?: Prisma.SortOrder
   diagnostico?: Prisma.SortOrder
@@ -480,7 +459,6 @@ export type HistorialMaxOrderByAggregateInput = {
 export type HistorialMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   id_paciente?: Prisma.SortOrder
-  motivo?: Prisma.SortOrder
   antecedentes?: Prisma.SortOrder
   triaje?: Prisma.SortOrder
   diagnostico?: Prisma.SortOrder
@@ -543,7 +521,6 @@ export type NullableStringFieldUpdateOperationsInput = {
 }
 
 export type HistorialCreateWithoutPacienteInput = {
-  motivo: string
   antecedentes?: string | null
   triaje: string
   diagnostico?: string | null
@@ -556,7 +533,6 @@ export type HistorialCreateWithoutPacienteInput = {
 
 export type HistorialUncheckedCreateWithoutPacienteInput = {
   id?: number
-  motivo: string
   antecedentes?: string | null
   triaje: string
   diagnostico?: string | null
@@ -599,7 +575,6 @@ export type HistorialScalarWhereInput = {
   NOT?: Prisma.HistorialScalarWhereInput | Prisma.HistorialScalarWhereInput[]
   id?: Prisma.IntFilter<"Historial"> | number
   id_paciente?: Prisma.IntFilter<"Historial"> | number
-  motivo?: Prisma.StringFilter<"Historial"> | string
   antecedentes?: Prisma.StringNullableFilter<"Historial"> | string | null
   triaje?: Prisma.StringFilter<"Historial"> | string
   diagnostico?: Prisma.StringNullableFilter<"Historial"> | string | null
@@ -612,7 +587,6 @@ export type HistorialScalarWhereInput = {
 
 export type HistorialCreateManyPacienteInput = {
   id?: number
-  motivo: string
   antecedentes?: string | null
   triaje: string
   diagnostico?: string | null
@@ -624,7 +598,6 @@ export type HistorialCreateManyPacienteInput = {
 }
 
 export type HistorialUpdateWithoutPacienteInput = {
-  motivo?: Prisma.StringFieldUpdateOperationsInput | string
   antecedentes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   triaje?: Prisma.StringFieldUpdateOperationsInput | string
   diagnostico?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -637,7 +610,6 @@ export type HistorialUpdateWithoutPacienteInput = {
 
 export type HistorialUncheckedUpdateWithoutPacienteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  motivo?: Prisma.StringFieldUpdateOperationsInput | string
   antecedentes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   triaje?: Prisma.StringFieldUpdateOperationsInput | string
   diagnostico?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -650,7 +622,6 @@ export type HistorialUncheckedUpdateWithoutPacienteInput = {
 
 export type HistorialUncheckedUpdateManyWithoutPacienteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  motivo?: Prisma.StringFieldUpdateOperationsInput | string
   antecedentes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   triaje?: Prisma.StringFieldUpdateOperationsInput | string
   diagnostico?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -666,7 +637,6 @@ export type HistorialUncheckedUpdateManyWithoutPacienteInput = {
 export type HistorialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   id_paciente?: boolean
-  motivo?: boolean
   antecedentes?: boolean
   triaje?: boolean
   diagnostico?: boolean
@@ -681,7 +651,6 @@ export type HistorialSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type HistorialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   id_paciente?: boolean
-  motivo?: boolean
   antecedentes?: boolean
   triaje?: boolean
   diagnostico?: boolean
@@ -696,7 +665,6 @@ export type HistorialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type HistorialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   id_paciente?: boolean
-  motivo?: boolean
   antecedentes?: boolean
   triaje?: boolean
   diagnostico?: boolean
@@ -711,7 +679,6 @@ export type HistorialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type HistorialSelectScalar = {
   id?: boolean
   id_paciente?: boolean
-  motivo?: boolean
   antecedentes?: boolean
   triaje?: boolean
   diagnostico?: boolean
@@ -722,7 +689,7 @@ export type HistorialSelectScalar = {
   deletedate?: boolean
 }
 
-export type HistorialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_paciente" | "motivo" | "antecedentes" | "triaje" | "diagnostico" | "tratamiento" | "receta" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["historial"]>
+export type HistorialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_paciente" | "antecedentes" | "triaje" | "diagnostico" | "tratamiento" | "receta" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["historial"]>
 export type HistorialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
 }
@@ -741,7 +708,6 @@ export type $HistorialPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     id_paciente: number
-    motivo: string
     antecedentes: string | null
     triaje: string
     diagnostico: string | null
@@ -1176,7 +1142,6 @@ export interface Prisma__HistorialClient<T, Null = never, ExtArgs extends runtim
 export interface HistorialFieldRefs {
   readonly id: Prisma.FieldRef<"Historial", 'Int'>
   readonly id_paciente: Prisma.FieldRef<"Historial", 'Int'>
-  readonly motivo: Prisma.FieldRef<"Historial", 'String'>
   readonly antecedentes: Prisma.FieldRef<"Historial", 'String'>
   readonly triaje: Prisma.FieldRef<"Historial", 'String'>
   readonly diagnostico: Prisma.FieldRef<"Historial", 'String'>
