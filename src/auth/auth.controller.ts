@@ -35,10 +35,10 @@ export class AuthController {
   })
   @Patch('new-password')
   async newPassword(
-    @User('email') email: string, // Uso de @User, para traer solo 'email' del usuario logeado
+    @User() user: any, // Uso de @User, para traer solo 'email' del usuario logeado
     @Body() newPasswordDto: NewPasswordDto,
   ) {
-    return this.authService.newPassword(email, newPasswordDto);
+    return this.authService.newPassword(user.email, newPasswordDto);
   }
 
   @ApiBearerAuth()
