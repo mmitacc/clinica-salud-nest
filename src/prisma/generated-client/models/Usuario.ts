@@ -48,6 +48,7 @@ export type UsuarioMinAggregateOutputType = {
   password: string | null
   role: $Enums.Role | null
   username: string | null
+  foto: string | null
   registerdate: Date | null
   deleted: boolean | null
   deletedate: Date | null
@@ -65,6 +66,7 @@ export type UsuarioMaxAggregateOutputType = {
   password: string | null
   role: $Enums.Role | null
   username: string | null
+  foto: string | null
   registerdate: Date | null
   deleted: boolean | null
   deletedate: Date | null
@@ -82,6 +84,7 @@ export type UsuarioCountAggregateOutputType = {
   password: number
   role: number
   username: number
+  foto: number
   registerdate: number
   deleted: number
   deletedate: number
@@ -111,6 +114,7 @@ export type UsuarioMinAggregateInputType = {
   password?: true
   role?: true
   username?: true
+  foto?: true
   registerdate?: true
   deleted?: true
   deletedate?: true
@@ -128,6 +132,7 @@ export type UsuarioMaxAggregateInputType = {
   password?: true
   role?: true
   username?: true
+  foto?: true
   registerdate?: true
   deleted?: true
   deletedate?: true
@@ -145,6 +150,7 @@ export type UsuarioCountAggregateInputType = {
   password?: true
   role?: true
   username?: true
+  foto?: true
   registerdate?: true
   deleted?: true
   deletedate?: true
@@ -249,6 +255,7 @@ export type UsuarioGroupByOutputType = {
   password: string
   role: $Enums.Role
   username: string
+  foto: string | null
   registerdate: Date
   deleted: boolean
   deletedate: Date | null
@@ -289,6 +296,7 @@ export type UsuarioWhereInput = {
   password?: Prisma.StringFilter<"Usuario"> | string
   role?: Prisma.EnumRoleFilter<"Usuario"> | $Enums.Role
   username?: Prisma.StringFilter<"Usuario"> | string
+  foto?: Prisma.StringNullableFilter<"Usuario"> | string | null
   registerdate?: Prisma.DateTimeFilter<"Usuario"> | Date | string
   deleted?: Prisma.BoolFilter<"Usuario"> | boolean
   deletedate?: Prisma.DateTimeNullableFilter<"Usuario"> | Date | string | null
@@ -308,6 +316,7 @@ export type UsuarioOrderByWithRelationInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   username?: Prisma.SortOrder
+  foto?: Prisma.SortOrderInput | Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -330,6 +339,7 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
   fechanacimiento?: Prisma.DateTimeFilter<"Usuario"> | Date | string
   password?: Prisma.StringFilter<"Usuario"> | string
   role?: Prisma.EnumRoleFilter<"Usuario"> | $Enums.Role
+  foto?: Prisma.StringNullableFilter<"Usuario"> | string | null
   registerdate?: Prisma.DateTimeFilter<"Usuario"> | Date | string
   deleted?: Prisma.BoolFilter<"Usuario"> | boolean
   deletedate?: Prisma.DateTimeNullableFilter<"Usuario"> | Date | string | null
@@ -349,6 +359,7 @@ export type UsuarioOrderByWithAggregationInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   username?: Prisma.SortOrder
+  foto?: Prisma.SortOrderInput | Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -374,6 +385,7 @@ export type UsuarioScalarWhereWithAggregatesInput = {
   password?: Prisma.StringWithAggregatesFilter<"Usuario"> | string
   role?: Prisma.EnumRoleWithAggregatesFilter<"Usuario"> | $Enums.Role
   username?: Prisma.StringWithAggregatesFilter<"Usuario"> | string
+  foto?: Prisma.StringNullableWithAggregatesFilter<"Usuario"> | string | null
   registerdate?: Prisma.DateTimeWithAggregatesFilter<"Usuario"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Usuario"> | boolean
   deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Usuario"> | Date | string | null
@@ -389,6 +401,7 @@ export type UsuarioCreateInput = {
   password: string
   role: $Enums.Role
   username: string
+  foto?: string | null
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -408,6 +421,7 @@ export type UsuarioUncheckedCreateInput = {
   password: string
   role: $Enums.Role
   username: string
+  foto?: string | null
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -424,6 +438,7 @@ export type UsuarioUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -443,6 +458,7 @@ export type UsuarioUncheckedUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -461,6 +477,7 @@ export type UsuarioCreateManyInput = {
   password: string
   role: $Enums.Role
   username: string
+  foto?: string | null
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -476,6 +493,7 @@ export type UsuarioUpdateManyMutationInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -493,6 +511,7 @@ export type UsuarioUncheckedUpdateManyInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -515,6 +534,7 @@ export type UsuarioCountOrderByAggregateInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   username?: Prisma.SortOrder
+  foto?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrder
@@ -537,6 +557,7 @@ export type UsuarioMaxOrderByAggregateInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   username?: Prisma.SortOrder
+  foto?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrder
@@ -554,6 +575,7 @@ export type UsuarioMinOrderByAggregateInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   username?: Prisma.SortOrder
+  foto?: Prisma.SortOrder
   registerdate?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedate?: Prisma.SortOrder
@@ -652,6 +674,7 @@ export type UsuarioCreateWithoutConsultasInput = {
   password: string
   role: $Enums.Role
   username: string
+  foto?: string | null
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -670,6 +693,7 @@ export type UsuarioUncheckedCreateWithoutConsultasInput = {
   password: string
   role: $Enums.Role
   username: string
+  foto?: string | null
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -701,6 +725,7 @@ export type UsuarioUpdateWithoutConsultasInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -719,6 +744,7 @@ export type UsuarioUncheckedUpdateWithoutConsultasInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -734,6 +760,7 @@ export type UsuarioCreateWithoutEspecialidadInput = {
   password: string
   role: $Enums.Role
   username: string
+  foto?: string | null
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -751,6 +778,7 @@ export type UsuarioUncheckedCreateWithoutEspecialidadInput = {
   password: string
   role: $Enums.Role
   username: string
+  foto?: string | null
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -798,6 +826,7 @@ export type UsuarioScalarWhereInput = {
   password?: Prisma.StringFilter<"Usuario"> | string
   role?: Prisma.EnumRoleFilter<"Usuario"> | $Enums.Role
   username?: Prisma.StringFilter<"Usuario"> | string
+  foto?: Prisma.StringNullableFilter<"Usuario"> | string | null
   registerdate?: Prisma.DateTimeFilter<"Usuario"> | Date | string
   deleted?: Prisma.BoolFilter<"Usuario"> | boolean
   deletedate?: Prisma.DateTimeNullableFilter<"Usuario"> | Date | string | null
@@ -814,6 +843,7 @@ export type UsuarioCreateManyEspecialidadInput = {
   password: string
   role: $Enums.Role
   username: string
+  foto?: string | null
   registerdate?: Date | string
   deleted?: boolean
   deletedate?: Date | string | null
@@ -829,6 +859,7 @@ export type UsuarioUpdateWithoutEspecialidadInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -846,6 +877,7 @@ export type UsuarioUncheckedUpdateWithoutEspecialidadInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -863,6 +895,7 @@ export type UsuarioUncheckedUpdateManyWithoutEspecialidadInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   username?: Prisma.StringFieldUpdateOperationsInput | string
+  foto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registerdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -911,6 +944,7 @@ export type UsuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   password?: boolean
   role?: boolean
   username?: boolean
+  foto?: boolean
   registerdate?: boolean
   deleted?: boolean
   deletedate?: boolean
@@ -931,6 +965,7 @@ export type UsuarioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   password?: boolean
   role?: boolean
   username?: boolean
+  foto?: boolean
   registerdate?: boolean
   deleted?: boolean
   deletedate?: boolean
@@ -949,6 +984,7 @@ export type UsuarioSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   password?: boolean
   role?: boolean
   username?: boolean
+  foto?: boolean
   registerdate?: boolean
   deleted?: boolean
   deletedate?: boolean
@@ -967,12 +1003,13 @@ export type UsuarioSelectScalar = {
   password?: boolean
   role?: boolean
   username?: boolean
+  foto?: boolean
   registerdate?: boolean
   deleted?: boolean
   deletedate?: boolean
 }
 
-export type UsuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_especialidad" | "nombres" | "apellidos" | "telefono" | "masculino" | "fechanacimiento" | "email" | "password" | "role" | "username" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["usuario"]>
+export type UsuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_especialidad" | "nombres" | "apellidos" | "telefono" | "masculino" | "fechanacimiento" | "email" | "password" | "role" | "username" | "foto" | "registerdate" | "deleted" | "deletedate", ExtArgs["result"]["usuario"]>
 export type UsuarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   especialidad?: boolean | Prisma.Usuario$especialidadArgs<ExtArgs>
   consultas?: boolean | Prisma.Usuario$consultasArgs<ExtArgs>
@@ -1003,6 +1040,7 @@ export type $UsuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     password: string
     role: $Enums.Role
     username: string
+    foto: string | null
     registerdate: Date
     deleted: boolean
     deletedate: Date | null
@@ -1442,6 +1480,7 @@ export interface UsuarioFieldRefs {
   readonly password: Prisma.FieldRef<"Usuario", 'String'>
   readonly role: Prisma.FieldRef<"Usuario", 'Role'>
   readonly username: Prisma.FieldRef<"Usuario", 'String'>
+  readonly foto: Prisma.FieldRef<"Usuario", 'String'>
   readonly registerdate: Prisma.FieldRef<"Usuario", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Usuario", 'Boolean'>
   readonly deletedate: Prisma.FieldRef<"Usuario", 'DateTime'>

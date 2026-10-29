@@ -118,6 +118,7 @@ model Usuario {
   password        String    @db.VarChar(100)
   role            Role
   username        String    @unique @db.VarChar(50)
+  foto            String?    @db.VarChar(512)
   registerdate    DateTime  @default(now())
   deleted         Boolean   @default(false)
   deletedate      DateTime? @db.Date

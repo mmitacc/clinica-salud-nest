@@ -38,4 +38,17 @@ export class AuthService {
   async newPassword(email: string, newPasswordDto: NewPasswordDto) {
     return this.usuarioService.updatePassword(email, newPasswordDto);
   }
+
+  // Nuevo método para actualizar perfil
+  async actualizarPerfil(
+    usuarioId: number,
+    datos: { username: string; telefono?: string; foto?: string },
+  ) {
+    const updatePerfil = {
+      username: datos.username,
+      telefono: datos.telefono,
+      ...(datos.foto && { foto: datos.foto }),
+    };
+    return await this.usuarioService.update(usuarioId, updatePerfil);
+  }
 }

@@ -176,4 +176,12 @@ export class CreateUsuarioDto {
   @IsInt({ message: 'El "id_especialidad" debe ser un numero entero.' })
   @Min(0, { message: 'El "id_especialidad" no puede ser negativo.' })
   readonly id_especialidad?: number;
+
+  @ApiProperty({
+    example:
+      'https://cloudinary.com<cloud_name>/<resource_type>/<type>/<transformations>/<version>/<public_id>.<format>',
+    description: 'URL de la foto/avatar del usuario',
+  })
+  @IsOptional({ message: "La 'foto' debe ser un texto." })
+  readonly foto: string;
 }

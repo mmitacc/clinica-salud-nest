@@ -1,12 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PickType } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-  Matches,
-  Length,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, Length } from 'class-validator';
+import { CreateUsuarioDto } from '../../usuario/dto/create-usuario.dto.js';
 
 export class LoginAuthDto {
   @ApiProperty({
@@ -54,3 +49,8 @@ export class LoginAuthDto {
   // })
   readonly password: string;
 }
+
+export class UpdatePerfilDto extends PickType(CreateUsuarioDto, [
+  'username',
+  'telefono',
+]) {}

@@ -13,6 +13,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/guards/roles.guard.js';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 import { ConfigModule } from '@nestjs/config';
+import { CloudinaryModule } from './cloudinary/cloudinary.module.js';
 import Joi from 'joi';
 
 // export const { ObserveModule, ObserveInstrument } = createObserveModule();
@@ -42,6 +43,7 @@ import Joi from 'joi';
     EspecialidadModule,
     HistorialModule,
     UsuarioModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [
