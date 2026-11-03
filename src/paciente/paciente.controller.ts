@@ -13,11 +13,11 @@ import { UpdatePacienteDto } from './dto/update-paciente.dto.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
-@Roles('ADMIN')
 @Controller('pacientes')
 @ApiBearerAuth()
 export class PacienteController {
   constructor(private readonly pacienteService: PacienteService) {}
+  
   @Roles('RECEPCIONISTA', 'ADMIN')
   @ApiOperation({ summary: 'Registra un nuevo Paciente' })
   @Post()
