@@ -13,11 +13,12 @@ import { UpdatePacienteDto } from './dto/update-paciente.dto.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
+@Roles('ADMIN')
 @Controller('pacientes')
 @ApiBearerAuth()
 export class PacienteController {
   constructor(private readonly pacienteService: PacienteService) {}
-  @Roles('RECEPCIONISTA')
+  @Roles('RECEPCIONISTA', 'ADMIN')
   @ApiOperation({ summary: 'Registra un nuevo Paciente' })
   @Post()
   create(@Body() createPacienteDto: CreatePacienteDto) {
@@ -36,7 +37,7 @@ export class PacienteController {
     return this.pacienteService.findOne(+id);
   }
 
-  @Roles('RECEPCIONISTA')
+  @Roles('RECEPCIONISTA','ADMIN')
   @ApiOperation({
     summary: 'Actualiza algún campo de un Paciente identificado por su ID',
   })

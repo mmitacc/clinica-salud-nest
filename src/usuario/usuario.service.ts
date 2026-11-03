@@ -33,7 +33,15 @@ export class UsuarioService {
   }
 
   async findByEmail(email: string) {
-    return await this.prisma.check.usuario.findFirst({ where: { email } });
+    return await this.prisma.check.usuario.findFirst({
+      where: { email },
+      omit: {
+        id_especialidad: true,
+        registerdate: true,
+        fechanacimiento: true,
+        masculino: true,
+      },
+    });
   }
 
   async findAllMedico() {

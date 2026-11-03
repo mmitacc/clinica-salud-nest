@@ -64,7 +64,7 @@ export class AuthController {
   @Get('profile')
   async profile(@User() user: any) {
     // Uso de @User, para traer toda la data del usuario logeado
-    return user;
+    return this.authService.profile(user.id);
   }
 
   // NUEVO ENDPOINT PARA ACTUALIZAR EL PERFIL CLÍNICO con CLOUDINARY

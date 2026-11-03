@@ -39,6 +39,10 @@ export class AuthService {
     return this.usuarioService.updatePassword(email, newPasswordDto);
   }
 
+  async profile(id: number) {
+    return this.usuarioService.findOne(id);
+  }
+
   // Nuevo método para actualizar perfil
   async actualizarPerfil(
     usuarioId: number,
