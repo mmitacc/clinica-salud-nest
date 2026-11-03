@@ -17,7 +17,6 @@ import { Roles } from '../auth/decorators/roles.decorator.js';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@Roles('ADMIN')
 @Controller('consultas')
 export class ConsultaController {
   constructor(private readonly consultaService: ConsultaService) {}
