@@ -22,7 +22,8 @@ Este API es una API RESTful que permite la gestión de usuarios, pacientes, medi
     `pnpm run start:dev`
 8.- Existe una ruta para la documentación completa de la API en el puerto
     `http://localhost:3000/api/docs`
-
+9.- URL deploy del Backend Api Resful:
+    `https://clinica-salud-nest.onrender.com`
 
 ## Autor
 

@@ -45,10 +45,7 @@ async function bootstrap() {
 
   // === CONFIGURACIÓN DE CORS ===
   app.enableCors({
-    origin: [
-      configService.get<string>('FRONTEND_URL'),
-      '*',
-    ], // URL de tu frontend
+    origin: [configService.get<string>('FRONTEND_URL')], // URL de tu frontend
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Requerido si envías cookies o headers de sesión (ej. HttpOnly cookies)
     allowedHeaders: 'Content-Type, Authorization', // Asegura que estos headers estén permitidos

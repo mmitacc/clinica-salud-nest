@@ -60,7 +60,7 @@ async function main() {
         email: 'manu@clinica.com',
         password: hashSAdmin,
         role: Role.ADMIN,
-        username: 'admin',
+        username: 'mmitacc',
       },
       {
         nombres: 'Kevin',
