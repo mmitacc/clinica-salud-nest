@@ -47,7 +47,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       configService.get<string>('FRONTEND_URL'),
-      'http://localhost:5174',
+      '*',
     ], // URL de tu frontend
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Requerido si envías cookies o headers de sesión (ej. HttpOnly cookies)
