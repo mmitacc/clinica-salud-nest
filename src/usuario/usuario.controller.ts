@@ -13,12 +13,12 @@ import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
-@Roles('ADMIN', 'GERENCIA')
 @Controller('usuarios')
 @ApiBearerAuth()
 export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 
+  @Roles('ADMIN', 'GERENCIA')
   @ApiOperation({ summary: 'Registra un nuevo Usuario' })
   @Post()
   create(@Body() createUsuarioDto: CreateUsuarioDto) {
@@ -31,18 +31,21 @@ export class UsuarioController {
     return this.usuarioService.findAllMedico();
   }
 
+  @Roles('ADMIN', 'GERENCIA')
   @ApiOperation({ summary: 'Lista todos los Usuarios' })
   @Get()
   findAll() {
     return this.usuarioService.findAll();
   }
 
+  @Roles('ADMIN', 'GERENCIA')
   @ApiOperation({ summary: 'Muestra un Usuario identificado por su ID' })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usuarioService.findOne(+id);
   }
 
+  @Roles('ADMIN', 'GERENCIA')
   @ApiOperation({
     summary: 'Actualiza algún campo de un Usuario identificado por su ID',
   })
@@ -51,6 +54,7 @@ export class UsuarioController {
     return this.usuarioService.update(+id, updateUsuarioDto);
   }
 
+  @Roles('ADMIN', 'GERENCIA')
   @ApiOperation({ summary: 'Elimina un Usuario identificado por su ID' })
   @Delete(':id')
   removeSoft(@Param('id') id: string) {
